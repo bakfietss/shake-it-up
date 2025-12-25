@@ -1,0 +1,29 @@
+:root {
+  /* ---- Colors (tokens) ---- */
+  --color-bg: #0b0b0d;
+  --color-bg-page: #ffd700; /* Yellow background for pages */
+  --color-text: #ffffff;
+  --color-text-dark: #0b0b0d; /* Dark text for light backgrounds */
+  --color-text-muted: rgba(196, 29, 29, 0.7);
+
+  /* Brand / accent (example, pick yours) */
+  --color-accent: #ffffff; /* if your CTA is white */
+  --color-accent-contrast: #0b0b0d;
+
+  /* ---- “40% opacity” tokens (use everywhere) ---- */
+  --overlay-40: rgba(0, 0, 0, 0.4);         /* for dark glass backgrounds */
+  --white-40: rgba(255, 255, 255, 0.4);     /* for borders or light glass */
+
+  /* Optional common glass tokens */
+  --glass-bg: rgba(0, 0, 0, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.18);
+
+  /* ---- Spacing / radius (optional but nice) ---- */
+  --radius-pill: 999px;
+  --radius-md: 12px;
+
+  /* ---- Fonts ---- */
+  --font-display: "Abhaya Libre", serif;
+  --font-ui: "Kdam Thmor Pro", sans-serif;
+  --font-accent: "Kotta One", serif;
+}

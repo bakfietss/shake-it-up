@@ -1,0 +1,148 @@
+/* HERO SHOULD ALWAYS BE VISIBLE UNDER INTRO */
+.hero-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  background: black; /* fallback only */
+}
+
+/* VIDEO SETTINGS */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  transition: transform 1.5s ease-in-out;
+}
+
+.hero-video.loaded {
+  transform: scale(1);
+}
+
+/* --------------------------------------------------------------------------------------------- Layout and styling */
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+}
+
+.hero-right {
+  position: relative; /* important: anchors absolutely-positioned children */
+  padding: 2rem;
+}
+
+/* Title stays top-right */
+.hero-content {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+  text-align: right;
+  color: #fff;
+
+  width: fit-content;
+  max-inline-size: 90vw;
+  overflow-wrap: anywhere;
+
+  padding: 0.75rem 1rem;
+  backdrop-filter: blur(2px);
+}
+
+.title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 1rem;
+  white-space: nowrap;
+}
+
+/* ✅ NEW: a positioned wrapper for bullets + CTA */
+.hero-actions {
+  position: absolute;
+  top: 24vh;   /* where the block starts */
+  left: 2rem;  /* left side inside hero-right */
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .5rem; /* space between bullets and button */
+
+  max-inline-size: 45vw;
+}
+
+/* Bullet points are now normal flow (NOT absolute) */
+.bullet-points {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+
+  color: #ffffff;
+  text-align: left;
+  max-inline-size: 100%;
+}
+
+.bullet-points h3 {
+  margin: 0;
+  font-weight: 600;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  font-style: italic;
+}
+
+/* Typography */
+.hero-content h1 {
+  font-size: clamp(4rem, 6vw, 6rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.hero-content p {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  margin: 0;
+  opacity: 0.95;
+}
+
+/* CTA hero-specific layer (your reusable Button provides base styles) */
+.cta-button {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .hero-right {
+    padding: 1rem;
+  }
+
+  .hero-content {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .hero-actions {
+    top: 28vh;
+    left: 1rem;
+    max-inline-size: 80vw;
+    gap: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    animation: none !important;
+  }
+}

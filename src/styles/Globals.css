@@ -1,0 +1,26 @@
+/* If you load fonts via Google Fonts, you can import them here.
+   (Make sure the font names match what you use in variables.) */
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&family=Kdam+Thmor+Pro&family=Kotta+One&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+}
+
+/* Optional: standard headings font */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--color-text);
+}

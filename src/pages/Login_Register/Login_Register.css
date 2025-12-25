@@ -1,0 +1,115 @@
+.auth-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.auth-modal {
+  position: relative;
+  max-width: 450px;
+  width: 100%;
+  background: rgba(11, 11, 13, 0.95);
+  border: 2px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.auth-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.auth-modal-close:hover {
+  color: var(--color-accent);
+}
+
+.auth-modal h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  text-align: center;
+}
+
+.auth-subtitle {
+  font-family: var(--font-ui);
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.auth-switch {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.auth-switch p {
+  font-family: var(--font-ui);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.auth-switch-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-accent);
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+
+.auth-switch-btn:hover {
+  opacity: 0.8;
+}

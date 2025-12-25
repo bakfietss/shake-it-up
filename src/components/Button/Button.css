@@ -1,0 +1,38 @@
+.btn {
+  border: none;
+  cursor: pointer;
+  font: inherit;
+
+  padding: 0.9rem 1.25rem;
+  border-radius: var(--radius-pill);
+
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background: var(--btn-bg, var(--color-accent));
+  color: var(--btn-fg, var(--color-accent-contrast));
+}
+
+.btn--glass {
+  background: var(--glass-bg);
+  color: var(--color-text);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+}
+
+.btn--transparent {
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+  transition: all 0.3s ease;
+}
+
+.btn--transparent:hover {
+  background: var(--white-40);
+  border-color: var(--color-accent);
+}
