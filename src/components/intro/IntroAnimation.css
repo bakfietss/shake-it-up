@@ -12,13 +12,11 @@
   overflow: hidden;
   pointer-events: none;
 
-  /* nieuw: fade */
   opacity: 1;
   transition: opacity 0.8s ease-out;
 }
 
-/* wordt toegevoegd vlak voor onFinish() */
-.intro-container.hidden {
+.intro-container--fade-out {
   opacity: 0;
 }
 
@@ -63,7 +61,7 @@
     opacity 1.5s ease;
 }
 
-.logo-container.spinning {
+.logo-container--spinning {
   transform: rotate(720deg) scale(0);
   opacity: 0;
 }
@@ -82,7 +80,7 @@
   stroke-linejoin: round;
 }
 
-.svg-path.animate {
+.svg-path--animate {
   animation: draw 3s ease forwards, welding 3s linear forwards;
 }
 
@@ -114,7 +112,7 @@
     0 0 20px #ffd700;
 }
 
-.title-text.visible {
+.title-text--visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -145,7 +143,7 @@
   );
 }
 
-.whirlpool.active {
+.whirlpool--active {
   animation: whirlpoolSpin 1.5s ease-in-out forwards;
 }
 
