@@ -115,7 +115,6 @@
   opacity: 0.95;
 }
 
-/* CTA hero-specific layer (your reusable Button provides base styles) */
 .cta-button {
   letter-spacing: 0.04em;
   text-transform: uppercase;

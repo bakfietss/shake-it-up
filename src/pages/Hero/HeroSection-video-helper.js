@@ -18,7 +18,6 @@ export function useHeroVideo({
     console.log("Video loaded successfully");
   }, []);
 
-  // Build the props object once unless dependencies change
   const videoProps = useMemo(
     () => ({
       className: "hero-video",

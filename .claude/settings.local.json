@@ -3,7 +3,10 @@
     "allow": [
       "Bash(git rm:*)",
       "Bash(del \"src\\\\pages\\\\Intro\\\\IntroLogo.jsx\" \"src\\\\pages\\\\Intro\\\\IntroWhirlpool.jsx\" \"src\\\\pages\\\\Intro\\\\domTiming.js\")",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(git fetch:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
