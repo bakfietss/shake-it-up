@@ -1,10 +1,15 @@
+import { useState } from 'react'
 import './App.scss'
-import TestPage from './TestPage'
+import IntroAnimation from './pages/Intro/IntroAnimation'
 
 function App() {
+  const [introKlaar, setIntroKlaar] = useState(false)
+
   return (
     <div className="app">
-      <TestPage />
+      {!introKlaar && (
+        <IntroAnimation onFinish={() => setIntroKlaar(true)} />
+      )}
     </div>
   )
 }
