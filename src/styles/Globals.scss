@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&family=Kdam+Thmor+Pro&family=Kotta+One&family=Koh+Santepheap:wght@400;700&family=Karma:wght@400;500;600;700&display=swap");
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-default);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-default);
+  color: var(--color-text);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+}
+
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
+
+p {
+  line-height: 1.6;
+}
