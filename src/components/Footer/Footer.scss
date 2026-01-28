@@ -1,0 +1,24 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--color-text);
+  color: var(--color-text-light);
+  border-top: 1px solid var(--glass-bg);
+}
+
+.footer-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-xs) var(--space-sm);
+  text-align: center;
+
+  p {
+    font-family: var(--font-default);
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+  }
+}

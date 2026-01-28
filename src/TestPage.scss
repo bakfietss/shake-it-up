@@ -1,8 +1,11 @@
 .test-page {
+  display: flex;
   min-height: 100vh;
 }
 
 .section-dark {
+  width: 50%;
+  min-height: 100vh;
   background: var(--color-bg);
   color: var(--color-text-light);
   padding: var(--space-xl);
@@ -14,6 +17,8 @@
 }
 
 .section-light {
+  width: 50%;
+  min-height: 100vh;
   background: var(--color-beige);
   color: var(--color-text);
   padding: var(--space-xl);
