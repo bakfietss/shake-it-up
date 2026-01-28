@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import './App.scss'
-import IntroAnimation from './pages/Intro/IntroAnimation'
+import HeroPage from './pages/Hero/HeroPage'
+import TestPage from './TestPage'
 
 function App() {
-  const [introKlaar, setIntroKlaar] = useState(false)
+  const [pagina, setPagina] = useState('hero')
 
   return (
     <div className="app">
-      {!introKlaar && (
-        <IntroAnimation onFinish={() => setIntroKlaar(true)} />
+      {pagina === 'hero' && (
+        <HeroPage onGetStarted={() => setPagina('test')} />
       )}
+      {pagina === 'test' && <TestPage />}
     </div>
   )
 }
