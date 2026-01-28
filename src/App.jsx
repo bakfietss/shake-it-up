@@ -1,25 +1,34 @@
-import { useState } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import './App.scss'
 import HeroPage from './pages/Hero/HeroPage'
-import TestPage from './TestPage'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
+import Search from './pages/Search/Search'
+import Random from './pages/Random/Random'
+import Favorites from './pages/Favorites/Favorites'
+import Contact from './pages/Contact/Contact'
+import Login from './pages/Login_Register/Login'
+import NotFound from './pages/NotFound/NotFound'
 
 function App() {
-  const [pagina, setPagina] = useState('hero')
+  const location = useLocation()
+  const isHero = location.pathname === '/'
 
   return (
     <div className="app">
-      {pagina === 'hero' && (
-        <HeroPage onGetStarted={() => setPagina('test')} />
-      )}
-      {pagina === 'test' && (
-        <>
-          <Navbar />
-          <TestPage />
-          <Footer />
-        </>
-      )}
+      {!isHero && <Navbar />}
+
+      <Routes>
+        <Route path="/" element={<HeroPage />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/random" element={<Random />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+
+      {!isHero && <Footer />}
     </div>
   )
 }
