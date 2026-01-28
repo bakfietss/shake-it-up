@@ -1,0 +1,232 @@
+
+.hero-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  background: black;
+
+  color: var(--color-text-light);
+
+  h1, h2, h3, p, span {
+    color: var(--color-text-light);
+  }
+}
+
+// video
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  transition: transform 1.5s ease-in-out;
+
+  &.loaded {
+    transform: scale(1);
+  }
+}
+
+// layout
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+}
+
+.hero-right {
+  position: relative; 
+  padding: 2rem;
+}
+
+.hero-content {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+  text-align: right;
+  color: var(--color-text-light);
+
+  width: fit-content;
+  max-inline-size: 90vw;
+  overflow-wrap: anywhere;
+
+  padding: 0.75rem 1rem;
+  backdrop-filter: blur(2px);
+
+  h1 {
+    font-family: var(--font-title);    
+    font-size: var(--font-size-hero);   
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  p {
+    font-family: var(--font-subtitle); 
+    font-size: var(--font-size-tagline); 
+    margin: 0;
+    opacity: 0.95;
+  }
+}
+
+.title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 1rem;
+  white-space: nowrap;
+}
+
+// bullets wrapper
+.hero-actions {
+  position: absolute;
+
+  top: 30vh;
+
+  left: 2rem;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  max-inline-size: 45vw;
+}
+
+// bullet points
+.bullet-points {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+
+  color: var(--color-text-light);
+  text-align: left;
+  max-inline-size: 100%;
+
+  h3 {
+    margin: 0;
+    font-family: var(--font-body);      // Kotta One voor bullets
+    font-weight: var(--font-weight-normal);                   // Normal weight (niet bold!)
+    font-size: var(--font-size-body);
+    text-shadow: var(--shadow-sm);
+    font-style: italic;
+  }
+}
+
+// cta button
+.hero-cta-wrapper {
+  position: absolute;
+  left: 2rem;  // zelfde left als hero-actions
+  z-index: 2;
+
+  top: 80vh;
+
+  .btn {
+    background: var(--glass-bg);
+    color: var(--color-text-light);
+
+    &:hover {
+      background: var(--glass-bg-hover);
+    }
+  }
+}
+
+// tablet landscape
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr 2fr; // hero-left breder
+  }
+
+  // Titel en subtitel groter
+  .hero-content {
+    h1 {
+      font-size: 6rem;
+    }
+    p {
+      font-size: 2rem;
+    }
+  }
+
+  .hero-actions {
+    top: 40vh;
+    max-inline-size: 55vw;
+  }
+
+  .hero-cta-wrapper {
+    top: 80vh;
+    left: auto;
+    right: 2rem;
+  }
+
+  .bullet-points h3 {
+    font-size: 1.5rem;
+  }
+}
+
+// tablet portrait
+@media (max-width: 768px) {
+  .hero-video {
+    // pas % aan om video te verschuiven: 0% = links, 50% = midden, 100% = rechts
+    object-position: 25% center;
+  }
+
+  .hero-grid {
+    display: block; // geen grid meer
+  }
+
+  .hero-left {
+    display: none; // spacer div weg
+  }
+
+  .hero-right {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+
+  // Titel en subtitel groter
+  .hero-content {
+    h1 {
+      font-size: 6rem;
+    }
+    p {
+      font-size: 2rem;
+    }
+  }
+
+  // Bullets naar rechts
+  .hero-actions {
+    top: 40vh;
+    left: auto;
+    right: 2rem;
+    align-items: flex-end;
+    max-inline-size: 70vw;
+  }
+
+  .bullet-points {
+    align-items: flex-end;
+    text-align: right;
+
+    h3 {
+      font-size: 1.5rem;
+      max-width: 300px; // tekst terugloop
+    }
+  }
+
+  // CTA button naar rechts
+  .hero-cta-wrapper {
+    left: auto;
+    right: 2rem;
+    top: 80vh;
+  }
+}
+
