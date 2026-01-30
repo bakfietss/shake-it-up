@@ -18,6 +18,16 @@
   --glass-bg-hover: rgba(255, 255, 255, 0.2);
   --glass-border: rgba(255, 255, 255, 0.3);
 
+  // button gradients
+  --gradient-warm: linear-gradient(180deg, #FFE078 0%, #E97D6F 100%);
+  --gradient-warm-hover: linear-gradient(180deg, #f5d56a 0%, #d6705f 100%);
+
+  // feedback
+  --color-error: #dc3545;
+
+  // layout
+  --navbar-height: 80px;
+
   // font weights
   --font-weight-normal: 400;
   --font-weight-medium: 500;
