@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import placeholder1 from "../../assets/placeholder-imgs/drink_icons001-01_g172.png";
-import placeholder2 from "../../assets/placeholder-imgs/drink_icons001-01_g234.png";
-import placeholder3 from "../../assets/placeholder-imgs/drink_icons001-01_g335.png";
-import placeholder4 from "../../assets/placeholder-imgs/drink_icons001-01_g419.png";
-import placeholder5 from "../../assets/placeholder-imgs/drink_icons001-01_g562.png";
-import placeholder6 from "../../assets/placeholder-imgs/drink_icons001-01_g628.png";
-import placeholder7 from "../../assets/placeholder-imgs/drink_icons001-01_g75.png";
+import Grid from "../../components/Grid/Grid";
+import CocktailCard from "../../components/CocktailCard/CocktailCard";
+import { testCocktails } from "../../helpers/testData";
 import "./Search.scss";
 
 function Search() {
@@ -16,16 +12,6 @@ function Search() {
   const [showFilters, setShowFilters] = useState(false);
   const [filterAlcoholic, setFilterAlcoholic] = useState("all");
   const [filterGlass, setFilterGlass] = useState("");
-
-  const testCocktails = [
-    { id: 1, name: "Mojito", image: placeholder1, category: "Cocktail", alcoholic: "Alcoholic", glass: "Highball glass", ingredients: ["Rum", "Lime", "Mint"] },
-    { id: 2, name: "Virgin Colada", image: placeholder2, category: "Shake", alcoholic: "Non alcoholic", glass: "Hurricane glass", ingredients: ["Coconut", "Pineapple"] },
-    { id: 3, name: "Espresso Martini", image: placeholder3, category: "Cocktail", alcoholic: "Alcoholic", glass: "Cocktail glass", ingredients: ["Vodka", "Coffee"] },
-    { id: 4, name: "Shirley Temple", image: placeholder4, category: "Soft Drink", alcoholic: "Non alcoholic", glass: "Collins glass", ingredients: ["Ginger Ale", "Grenadine"] },
-    { id: 5, name: "Old Fashioned", image: placeholder5, category: "Ordinary Drink", alcoholic: "Alcoholic", glass: "Old-fashioned glass", ingredients: ["Whiskey", "Bitters"] },
-    { id: 6, name: "Fruit Punch", image: placeholder6, category: "Punch", alcoholic: "Non alcoholic", glass: "Punch bowl", ingredients: ["Orange Juice", "Pineapple"] },
-    { id: 7, name: "Margarita", image: placeholder7, category: "Cocktail", alcoholic: "Alcoholic", glass: "Cocktail glass", ingredients: ["Tequila", "Lime", "Triple Sec"] },
-  ];
 
   const categories = [...new Set(testCocktails.map(c => c.category))];
   const allIngredients = [...new Set(testCocktails.flatMap(c => c.ingredients))];
@@ -204,27 +190,23 @@ function Search() {
 
       <div className="search-results-section">
         <div className="search-container">
-          <div className="results-grid">
-            {gefilterdeResultaten.length === 0 && (
-              <p className="no-results">Geen cocktails gevonden</p>
-            )}
-
-            {gefilterdeResultaten.map((cocktail) => (
-              <div key={cocktail.id} className="cocktail-card">
-                <img src={cocktail.image} alt={cocktail.name} />
-                <div className="card-info">
-                  <h3>{cocktail.name}</h3>
-                  <div className="card-tags">
-                    <span className="tag tag-category">{cocktail.category}</span>
-                    <span className={`tag tag-alcoholic ${cocktail.alcoholic === "Alcoholic" ? "is-alcoholic" : "is-non-alcoholic"}`}>
-                      {cocktail.alcoholic === "Alcoholic" ? "Alcoholic" : "Non-alc"}
-                    </span>
-                    <span className="tag tag-glass">{cocktail.glass}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          {gefilterdeResultaten.length === 0 ? (
+            <p className="no-results">Geen cocktails gevonden</p>
+          ) : (
+            <Grid>
+              {gefilterdeResultaten.map((cocktail) => (
+                <CocktailCard
+                  key={cocktail.id}
+                  id={cocktail.id}
+                  name={cocktail.name}
+                  image={cocktail.image}
+                  category={cocktail.category}
+                  alcoholic={cocktail.alcoholic}
+                  glass={cocktail.glass}
+                />
+              ))}
+            </Grid>
+          )}
         </div>
       </div>
     </div>
