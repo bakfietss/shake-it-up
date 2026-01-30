@@ -1,3 +1,9 @@
 .app {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+}
+
+.app > *:not(.navbar):not(.footer) {
+  flex: 1;
 }

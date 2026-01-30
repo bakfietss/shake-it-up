@@ -40,7 +40,7 @@ p {
 }
 
 .page {
-  min-height: 100vh;
+  flex: 1;
   padding: var(--space-xl);
   padding-top: 100px;
 }
