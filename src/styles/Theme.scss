@@ -25,8 +25,15 @@
   // feedback
   --color-error: #dc3545;
 
+  // extra kleuren
+  --color-green-light: #e8f0e8;
+  --color-coral: #c1666b;
+  --color-coral-dark: #a3545a;
+  --color-bg-modal: #25252b;
+
   // layout
   --navbar-height: 80px;
+  --footer-height: 60px;
 
   // font weights
   --font-weight-normal: 400;
@@ -85,10 +92,15 @@
 
   // shadows
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
   --shadow-glow: 0 0 20px rgba(255, 255, 255, 0.4);
   --shadow-glow-strong: 0 0 40px rgba(255, 255, 255, 0.3);
 
   // transitions
+  --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
+
+  // z-index
+  --z-overlay: 10;
 }

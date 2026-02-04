@@ -13,6 +13,7 @@ import NotFound from './pages/NotFound/NotFound'
 function App() {
   const location = useLocation()
   const isHero = location.pathname === '/'
+  const isRandom = location.pathname === '/random'
 
   return (
     <div className="app">
@@ -27,8 +28,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-
-      {!isHero && <Footer />}
+      
+      {/* Uitzonderingen Footer */}
+      {!isHero && !isRandom && <Footer />}
     </div>
   )
 }
