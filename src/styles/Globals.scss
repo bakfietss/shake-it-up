@@ -38,3 +38,9 @@ h3 { font-size: var(--font-size-h3); }
 p {
   line-height: 1.6;
 }
+
+.page {
+  flex: 1;
+  padding: var(--space-xl);
+  padding-top: 100px;
+}

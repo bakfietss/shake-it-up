@@ -3,7 +3,7 @@ import HeroSection from "./HeroSection";
 import IntroAnimation from "../Intro/IntroAnimation";
 
 // Hero pagina met intro animatie
-function HeroPage({ onGetStarted }) {
+function HeroPage() {
   const [introVisible, setIntroVisible] = useState(true);
 
   return (
@@ -11,7 +11,6 @@ function HeroPage({ onGetStarted }) {
       <HeroSection
         showContent={!introVisible}
         animate={!introVisible}
-        onGetStarted={onGetStarted}
       />
       {introVisible && (
         <IntroAnimation onFinish={() => setIntroVisible(false)} />

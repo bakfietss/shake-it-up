@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import "./HeroSection.scss";
 import { useHeroVideo } from "./HeroSection-video-helper.js";
@@ -17,7 +18,8 @@ const wakeUpNoviBackend = () => {
   });
 };
 
-const HeroSection = ({ animate = false, showContent = true, onGetStarted }) => {
+const HeroSection = ({ animate = false, showContent = true }) => {
+  const navigate = useNavigate();
   const contentRef = useRef(null);
 
   const { videoProps, videoError } = useHeroVideo({
@@ -66,7 +68,7 @@ const HeroSection = ({ animate = false, showContent = true, onGetStarted }) => {
                 size="large"
                 onClick={() => {
                   wakeUpNoviBackend();
-                  if (onGetStarted) onGetStarted();
+                  navigate('/search');
                 }}
               >
                 Get started!

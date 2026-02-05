@@ -18,6 +18,40 @@
   --glass-bg-hover: rgba(255, 255, 255, 0.2);
   --glass-border: rgba(255, 255, 255, 0.3);
 
+  // button gradients
+  --gradient-warm: linear-gradient(180deg, #FFE078 0%, #E97D6F 100%);
+  --gradient-warm-hover: linear-gradient(180deg, #f5d56a 0%, #d6705f 100%);
+
+  // feedback
+  --color-error: #dc3545;
+
+  // extra kleuren
+  --color-green-light: #e8f0e8;
+  --color-coral: #c1666b;
+  --color-coral-dark: #a3545a;
+  --color-bg-modal: #25252b;
+  --color-yellow: #FFE078;
+  --color-orange: #E97D6F;
+
+  // page backgrounds
+  --color-sage: #d4e6d4;
+  --color-mint: #e8f0e8;
+  --color-cream: #f5f5dc;
+
+  // tag kleuren
+  --tag-category-bg: #e8e0f0;
+  --tag-category-text: #6b5b7a;
+  --tag-alcoholic-bg: #d4edda;
+  --tag-alcoholic-text: #28633d;
+  --tag-non-alcoholic-bg: #d1ecf1;
+  --tag-non-alcoholic-text: #0c5460;
+  --tag-glass-bg: #fff3cd;
+  --tag-glass-text: #856404;
+
+  // layout
+  --navbar-height: 80px;
+  --footer-height: 60px;
+
   // font weights
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -75,10 +109,15 @@
 
   // shadows
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
   --shadow-glow: 0 0 20px rgba(255, 255, 255, 0.4);
   --shadow-glow-strong: 0 0 40px rgba(255, 255, 255, 0.3);
 
   // transitions
+  --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
+
+  // z-index
+  --z-overlay: 10;
 }

@@ -1,0 +1,66 @@
+.cocktail-card {
+  display: block;
+  text-decoration: none;
+  background: white;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .card-info {
+    padding: var(--space-md);
+
+    h3 {
+      font-family: var(--font-title);
+      font-size: var(--font-size-h3);
+      color: var(--color-text);
+      margin-bottom: var(--space-sm);
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+
+    .tag-category {
+      background: var(--tag-category-bg);
+      color: var(--tag-category-text);
+    }
+
+    .tag-alcoholic {
+      &.is-alcoholic {
+        background: var(--tag-alcoholic-bg);
+        color: var(--tag-alcoholic-text);
+      }
+      &.is-non-alcoholic {
+        background: var(--tag-non-alcoholic-bg);
+        color: var(--tag-non-alcoholic-text);
+      }
+    }
+
+    .tag-glass {
+      background: var(--tag-glass-bg);
+      color: var(--tag-glass-text);
+    }
+  }
+}
