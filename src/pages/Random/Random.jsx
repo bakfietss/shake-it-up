@@ -18,19 +18,10 @@ import {
   getImagePosition
 } from "./spinConfig";
 
-// Statische placeholder data (voor API)
-import tempCocktailImg from "../../assets/cocktail-temp.jpg";
+import { testCocktails } from "../../helpers/testData";
 
 const RECENT_SPINS_KEY = 'shakeItUp_recentSpins';
 const MAX_RECENT_SPINS = 4;
-
-const TEMP_COCKTAILS = [
-  { idDrink: "11007", strDrink: "Margarita", strDrinkThumb: tempCocktailImg },
-  { idDrink: "11000", strDrink: "Mojito", strDrinkThumb: tempCocktailImg },
-  { idDrink: "17222", strDrink: "Cosmopolitan", strDrinkThumb: tempCocktailImg },
-  { idDrink: "11001", strDrink: "Old Fashioned", strDrinkThumb: tempCocktailImg },
-  { idDrink: "17196", strDrink: "Espresso Martini", strDrinkThumb: tempCocktailImg },
-];
 
 const Random = () => {
   const [recentSpins, setRecentSpins] = useState([]);
@@ -89,11 +80,10 @@ const Random = () => {
     }, 600);
   };
 
-  // Placeholder voor API call
   const haalRandomCocktailOp = async () => {
     await new Promise(resolve => setTimeout(resolve, 200));
-    const randomIndex = Math.floor(Math.random() * TEMP_COCKTAILS.length);
-    return TEMP_COCKTAILS[randomIndex];
+    const randomIndex = Math.floor(Math.random() * testCocktails.length);
+    return testCocktails[randomIndex];
   };
 
   // Spin het wiel met GSAP

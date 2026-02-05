@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Grid from "../../components/Grid/Grid";
 import CocktailCard from "../../components/CocktailCard/CocktailCard";
 import { testCocktails } from "../../helpers/testData";
 import "./Search.scss";
+
+function haalIngredienten(drink) {
+  const ingredienten = [];
+  for (let i = 1; i <= 15; i++) {
+    const ingredient = drink[`strIngredient${i}`];
+    if (ingredient && ingredient.trim()) {
+      ingredienten.push(ingredient.trim());
+    }
+  }
+  return ingredienten;
+}
 
 function Search() {
   const [activeTab, setActiveTab] = useState("name");
@@ -13,34 +24,33 @@ function Search() {
   const [filterAlcoholic, setFilterAlcoholic] = useState("all");
   const [filterGlass, setFilterGlass] = useState("");
 
-  const categories = [...new Set(testCocktails.map(c => c.category))];
-  const allIngredients = [...new Set(testCocktails.flatMap(c => c.ingredients))];
-  const glasses = [...new Set(testCocktails.map(c => c.glass))];
+  const categories = [...new Set(testCocktails.map(c => c.strCategory))];
+  const allIngredients = [...new Set(testCocktails.flatMap(c => haalIngredienten(c)))];
+  const glasses = [...new Set(testCocktails.map(c => c.strGlass))];
 
-  // filter logica
   const gefilterdeResultaten = testCocktails.filter(cocktail => {
-    // tab-specifieke filter
     let matchTab = true;
     if (activeTab === "name" && zoekTerm) {
-      matchTab = cocktail.name.toLowerCase().includes(zoekTerm.toLowerCase());
+      matchTab = cocktail.strDrink.toLowerCase().includes(zoekTerm.toLowerCase());
     } else if (activeTab === "category" && selectedCategory) {
-      matchTab = cocktail.category === selectedCategory;
+      matchTab = cocktail.strCategory === selectedCategory;
     } else if (activeTab === "ingredient" && selectedIngredient) {
-      matchTab = cocktail.ingredients.includes(selectedIngredient);
+      const ingredienten = haalIngredienten(cocktail);
+      matchTab = ingredienten.includes(selectedIngredient);
     }
 
     // alcohol filter
     let matchAlcohol = true;
     if (filterAlcoholic === "alcoholic") {
-      matchAlcohol = cocktail.alcoholic === "Alcoholic";
+      matchAlcohol = cocktail.strAlcoholic === "Alcoholic";
     } else if (filterAlcoholic === "non-alcoholic") {
-      matchAlcohol = cocktail.alcoholic === "Non alcoholic";
+      matchAlcohol = cocktail.strAlcoholic === "Non alcoholic";
     }
 
     // glass filter
     let matchGlass = true;
     if (filterGlass) {
-      matchGlass = cocktail.glass === filterGlass;
+      matchGlass = cocktail.strGlass === filterGlass;
     }
 
     return matchTab && matchAlcohol && matchGlass;
@@ -196,13 +206,13 @@ function Search() {
             <Grid>
               {gefilterdeResultaten.map((cocktail) => (
                 <CocktailCard
-                  key={cocktail.id}
-                  id={cocktail.id}
-                  name={cocktail.name}
-                  image={cocktail.image}
-                  category={cocktail.category}
-                  alcoholic={cocktail.alcoholic}
-                  glass={cocktail.glass}
+                  key={cocktail.idDrink}
+                  idDrink={cocktail.idDrink}
+                  strDrink={cocktail.strDrink}
+                  strDrinkThumb={cocktail.strDrinkThumb}
+                  strCategory={cocktail.strCategory}
+                  strAlcoholic={cocktail.strAlcoholic}
+                  strGlass={cocktail.strGlass}
                 />
               ))}
             </Grid>

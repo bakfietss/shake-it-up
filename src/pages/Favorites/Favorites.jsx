@@ -1,4 +1,3 @@
-import React from "react";
 import heroImage from "../../assets/page-imgs/StockCake-Sunset_Drink_Cheers-706461-standard.jpg";
 import Grid from "../../components/Grid/Grid";
 import CocktailCard from "../../components/CocktailCard/CocktailCard";
@@ -27,13 +26,13 @@ function Favorites() {
           <Grid>
             {testCocktails.map((cocktail) => (
               <CocktailCard
-                key={cocktail.id}
-                id={cocktail.id}
-                name={cocktail.name}
-                image={cocktail.image}
-                category={cocktail.category}
-                alcoholic={cocktail.alcoholic}
-                glass={cocktail.glass}
+                key={cocktail.idDrink}
+                idDrink={cocktail.idDrink}
+                strDrink={cocktail.strDrink}
+                strDrinkThumb={cocktail.strDrinkThumb}
+                strCategory={cocktail.strCategory}
+                strAlcoholic={cocktail.strAlcoholic}
+                strGlass={cocktail.strGlass}
               />
             ))}
           </Grid>

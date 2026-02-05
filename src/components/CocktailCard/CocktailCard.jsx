@@ -1,21 +1,21 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import "./CocktailCard.scss";
 
-function CocktailCard({ id, name, image, category, alcoholic, glass }) {
+function CocktailCard({ idDrink, strDrink, strDrinkThumb, strCategory, strAlcoholic, strGlass }) {
   return (
-    <div className="cocktail-card">
-      <img src={image} alt={name} />
+    <Link to={`/cocktail/${idDrink}`} className="cocktail-card">
+      <img src={strDrinkThumb} alt={strDrink} />
       <div className="card-info">
-        <h3>{name}</h3>
+        <h3>{strDrink}</h3>
         <div className="card-tags">
-          <span className="tag tag-category">{category}</span>
-          <span className={`tag tag-alcoholic ${alcoholic === "Alcoholic" ? "is-alcoholic" : "is-non-alcoholic"}`}>
-            {alcoholic === "Alcoholic" ? "Alcoholic" : "Non-alc"}
+          <span className="tag tag-category">{strCategory}</span>
+          <span className={`tag tag-alcoholic ${strAlcoholic === "Alcoholic" ? "is-alcoholic" : "is-non-alcoholic"}`}>
+            {strAlcoholic === "Alcoholic" ? "Alcoholic" : "Non-alc"}
           </span>
-          <span className="tag tag-glass">{glass}</span>
+          <span className="tag tag-glass">{strGlass}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

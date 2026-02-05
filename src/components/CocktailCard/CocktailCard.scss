@@ -1,9 +1,12 @@
 .cocktail-card {
+  display: block;
+  text-decoration: none;
   background: white;
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-4px);
@@ -40,24 +43,24 @@
     }
 
     .tag-category {
-      background: #e8e0f0;
-      color: #6b5b7a;
+      background: var(--tag-category-bg);
+      color: var(--tag-category-text);
     }
 
     .tag-alcoholic {
       &.is-alcoholic {
-        background: #d4edda;
-        color: #28633d;
+        background: var(--tag-alcoholic-bg);
+        color: var(--tag-alcoholic-text);
       }
       &.is-non-alcoholic {
-        background: #d1ecf1;
-        color: #0c5460;
+        background: var(--tag-non-alcoholic-bg);
+        color: var(--tag-non-alcoholic-text);
       }
     }
 
     .tag-glass {
-      background: #fff3cd;
-      color: #856404;
+      background: var(--tag-glass-bg);
+      color: var(--tag-glass-text);
     }
   }
 }

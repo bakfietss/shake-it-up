@@ -8,6 +8,7 @@ import Random from './pages/Random/Random'
 import Favorites from './pages/Favorites/Favorites'
 import Contact from './pages/Contact/Contact'
 import Login from './pages/Login_Register/Login'
+import Details from './pages/DetailsCocktail/Details'
 import NotFound from './pages/NotFound/NotFound'
 
 function App() {
@@ -26,10 +27,10 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cocktail/:id" element={<Details />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       
-      {/* Uitzonderingen Footer */}
       {!isHero && !isRandom && <Footer />}
     </div>
   )
