@@ -1,12 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import "./Login.scss";
 
-// geen echte auth, placeholder voor API integratie
-
-const Login = () => {
-  const navigate = useNavigate();
+const Login = ({ isOpen, onClose }) => {
   const [isRegisterActive, setIsRegisterActive] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -15,6 +11,12 @@ const Login = () => {
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +27,6 @@ const Login = () => {
     }
 
     setLoading(true);
-    // later: echte API call
     setTimeout(() => {
       setLoading(false);
       alert("Login functionaliteit komt later (API integratie)");
@@ -46,17 +47,18 @@ const Login = () => {
     }
 
     setLoading(true);
-    // later: echte API call
     setTimeout(() => {
       setLoading(false);
       alert("Registratie functionaliteit komt later (API integratie)");
     }, 500);
   };
 
+  if (!isOpen) return null;
+
   return (
-    <div className="login-page-wrapper">
+    <div className="login-overlay" onClick={handleBackdropClick}>
       <div className={`auth-container ${isRegisterActive ? "active" : ""}`}>
-        <button className="auth-close-btn" onClick={() => navigate(-1)}>
+        <button className="auth-close-btn" onClick={onClose}>
           &times;
         </button>
 

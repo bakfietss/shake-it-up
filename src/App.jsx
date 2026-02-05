@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import './App.scss'
 import HeroPage from './pages/Hero/HeroPage'
@@ -16,9 +17,11 @@ function App() {
   const isHero = location.pathname === '/'
   const isRandom = location.pathname === '/random'
 
+  const [loginOpen, setLoginOpen] = useState(false)
+
   return (
     <div className="app">
-      {!isHero && <Navbar />}
+      {!isHero && <Navbar onLoginClick={() => setLoginOpen(true)} />}
 
       <Routes>
         <Route path="/" element={<HeroPage />} />
@@ -26,12 +29,13 @@ function App() {
         <Route path="/random" element={<Random />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/cocktail/:id" element={<Details />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      
+
       {!isHero && !isRandom && <Footer />}
+
+      <Login isOpen={loginOpen} onClose={() => setLoginOpen(false)} />
     </div>
   )
 }
