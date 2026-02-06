@@ -48,6 +48,20 @@
   --tag-glass-bg: #fff3cd;
   --tag-glass-text: #856404;
 
+  // toast kleuren
+  --toast-info-bg: #e8f4fd;
+  --toast-info-border: #b8daff;
+  --toast-info-text: #004085;
+  --toast-success-bg: #d4edda;
+  --toast-success-border: #c3e6cb;
+  --toast-success-text: #155724;
+  --toast-warning-bg: #fff3cd;
+  --toast-warning-border: #ffeeba;
+  --toast-warning-text: #856404;
+  --toast-error-bg: #f8d7da;
+  --toast-error-border: #f5c6cb;
+  --toast-error-text: #721c24;
+
   // layout
   --navbar-height: 80px;
   --footer-height: 60px;
@@ -120,4 +134,5 @@
 
   // z-index
   --z-overlay: 10;
+  --z-toast: 9999;
 }

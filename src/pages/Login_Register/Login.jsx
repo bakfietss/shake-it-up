@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useToast } from "../../context/ToastContext";
 import Button from "../../components/Button/Button";
 import "./Login.scss";
 
 const Login = ({ isOpen, onClose }) => {
+  const { showToast } = useToast();
   const [isRegisterActive, setIsRegisterActive] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -22,14 +24,14 @@ const Login = ({ isOpen, onClose }) => {
     e.preventDefault();
 
     if (!loginEmail || !loginPassword) {
-      alert("Vul alle velden in");
+      showToast("Vul alle velden in", "warning");
       return;
     }
 
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      alert("Login functionaliteit komt later (API integratie)");
+      showToast("Login functionaliteit komt later (API integratie)", "info");
     }, 500);
   };
 
@@ -37,19 +39,19 @@ const Login = ({ isOpen, onClose }) => {
     e.preventDefault();
 
     if (!registerUsername || !registerEmail || !registerPassword) {
-      alert("Vul alle velden in");
+      showToast("Vul alle velden in", "warning");
       return;
     }
 
     if (registerPassword.length < 6) {
-      alert("Wachtwoord moet minimaal 6 karakters zijn");
+      showToast("Wachtwoord moet minimaal 6 karakters zijn", "error");
       return;
     }
 
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      alert("Registratie functionaliteit komt later (API integratie)");
+      showToast("Registratie functionaliteit komt later (API integratie)", "info");
     }, 500);
   };
 
