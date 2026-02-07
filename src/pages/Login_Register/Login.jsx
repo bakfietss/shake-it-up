@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import { useToast } from "../../context/ToastContext";
 import Button from "../../components/Button/Button";
 import "./Login.scss";
 
 const Login = ({ isOpen, onClose }) => {
+  const { login, register } = useContext(AuthContext);
   const { showToast } = useToast();
   const [isRegisterActive, setIsRegisterActive] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -28,11 +30,14 @@ const Login = ({ isOpen, onClose }) => {
       return;
     }
 
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      showToast("Login functionaliteit komt later (API integratie)", "info");
-    }, 500);
+    const result = login(loginEmail.toLowerCase().trim(), loginPassword);
+
+    if (result.success) {
+      showToast("Je bent ingelogd!", "success");
+      onClose();
+    } else {
+      showToast(result.error, "error");
+    }
   };
 
   const handleRegisterSubmit = (e) => {
@@ -48,11 +53,14 @@ const Login = ({ isOpen, onClose }) => {
       return;
     }
 
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      showToast("Registratie functionaliteit komt later (API integratie)", "info");
-    }, 500);
+    const result = register(registerUsername.trim(), registerEmail.toLowerCase().trim(), registerPassword);
+
+    if (result.success) {
+      showToast("Account aangemaakt! Je bent nu ingelogd.", "success");
+      onClose();
+    } else {
+      showToast(result.error, "error");
+    }
   };
 
   if (!isOpen) return null;
