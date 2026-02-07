@@ -1,11 +1,22 @@
 import { useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { testCocktails } from "../../helpers/testData";
+import { useFavorites } from "../../context/FavoritesContext";
+import { useToast } from "../../context/ToastContext";
 import "./Details.scss";
 
 function Details() {
   const { id } = useParams();
   const cocktail = testCocktails.find(c => c.idDrink === id);
+  const { toggleFavorite, isFavorite } = useFavorites();
+  const { showToast } = useToast();
+
+  const isFav = isFavorite(id);
+
+  const handleFavoriteClick = () => {
+    toggleFavorite(cocktail);
+    showToast(isFav ? "Verwijderd uit favorieten" : "Toegevoegd aan favorieten!", isFav ? "info" : "success");
+  };
 
   function haalIngredienten(drink) {
     const ingredienten = [];
@@ -30,7 +41,7 @@ function Details() {
         <div className="details-left">
           <div className="cocktail-title-row">
             <h1 className="cocktail-name">{cocktail.strDrink}</h1>
-            <button className="favorite-heart">
+            <button className={`favorite-heart ${isFav ? "is-favorite" : ""}`} onClick={handleFavoriteClick}>
               <svg viewBox="0 0 24 24">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
               </svg>
@@ -67,8 +78,8 @@ function Details() {
             </div>
           )}
 
-          <Button btnType="solid" className="favorite-button-large">
-            Save Favorite
+          <Button btnType="solid" className="favorite-button-large" onClick={handleFavoriteClick}>
+            {isFav ? "Remove Favorite" : "Save Favorite"}
           </Button>
         </div>
       </div>
