@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import Button from "../../components/Button/Button";
 import Footer from "../../components/Footer/Footer";
+import api from "../../helpers/api";
 import "./Random.scss";
 
 // Spin carousel configuratie
@@ -17,8 +18,6 @@ import {
   FADE_IN_DELAY,
   getImagePosition
 } from "./spinConfig";
-
-import { testCocktails } from "../../helpers/testData";
 
 const RECENT_SPINS_KEY = 'shakeItUp_recentSpins';
 const MAX_RECENT_SPINS = 4;
@@ -81,9 +80,13 @@ const Random = () => {
   };
 
   const haalRandomCocktailOp = async () => {
-    await new Promise(resolve => setTimeout(resolve, 200));
-    const randomIndex = Math.floor(Math.random() * testCocktails.length);
-    return testCocktails[randomIndex];
+    try {
+      const response = await api.get('/random.php');
+      const drink = response.data.drinks[0];
+      return drink;
+    } catch (e) {
+      return null;
+    }
   };
 
   // Spin het wiel met GSAP
@@ -126,6 +129,7 @@ const Random = () => {
 
       setTimeout(() => {
         setShowWinnerContent(false);
+        setWinnerCocktail(null);
         setIsFadingOut(false);
         startSpin();
       }, FADE_OUT_DURATION * 1000);

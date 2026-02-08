@@ -1,22 +1,47 @@
-import { useParams } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import { testCocktails } from "../../helpers/testData";
+import api from "../../helpers/api";
+import { AuthContext } from "../../context/AuthContext";
 import { useFavorites } from "../../context/FavoritesContext";
 import { useToast } from "../../context/ToastContext";
 import "./Details.scss";
 
 function Details() {
   const { id } = useParams();
-  const cocktail = testCocktails.find(c => c.idDrink === id);
-  const { toggleFavorite, isFavorite } = useFavorites();
+  const navigate = useNavigate();
   const { showToast } = useToast();
+  const { isAuth } = useContext(AuthContext);
+  const { toggleFavorite, isFavorite } = useFavorites();
 
-  const isFav = isFavorite(id);
+  const [cocktail, setCocktail] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handleFavoriteClick = () => {
-    toggleFavorite(cocktail);
-    showToast(isFav ? "Verwijderd uit favorieten" : "Toegevoegd aan favorieten!", isFav ? "info" : "success");
-  };
+  const isFav = cocktail ? isFavorite(cocktail.idDrink) : false;
+
+  useEffect(() => {
+    async function fetchCocktail() {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await api.get(`/lookup.php?i=${id}`);
+        const drink = response.data.drinks?.[0];
+        if (drink) {
+          setCocktail(drink);
+        } else {
+          setError("Cocktail niet gevonden");
+        }
+      } catch (err) {
+        setError("Kon cocktail niet laden");
+      }
+      setLoading(false);
+    }
+
+    if (id) {
+      fetchCocktail();
+    }
+  }, [id]);
 
   function haalIngredienten(drink) {
     const ingredienten = [];
@@ -31,6 +56,39 @@ function Details() {
       }
     }
     return ingredienten;
+  }
+
+  const handleFavoriteClick = () => {
+    if (!isAuth) {
+      showToast("Log in om favorieten op te slaan", "warning");
+      return;
+    }
+    toggleFavorite(cocktail);
+    showToast(isFav ? "Verwijderd uit favorieten" : "Toegevoegd aan favorieten!", isFav ? "info" : "success");
+  };
+
+  if (loading) {
+    return (
+      <div className="details-page">
+        <div className="details-loading">
+          <p>Cocktail laden...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !cocktail) {
+    return (
+      <div className="details-page">
+        <div className="details-error">
+          <h2>Oops!</h2>
+          <p>{error || "Cocktail niet gevonden"}</p>
+          <Button btnType="solid" onClick={() => navigate(-1)}>
+            Ga terug
+          </Button>
+        </div>
+      </div>
+    );
   }
 
   const ingredienten = haalIngredienten(cocktail);
