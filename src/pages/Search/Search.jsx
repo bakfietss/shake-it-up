@@ -1,19 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { DEBOUNCE_DELAY, DEFAULT_LETTER, fetchByLetter, searchByName, searchByCategory, searchByIngredient, fetchFilterOptions } from "./searchHelper";
 import Grid from "../../components/Grid/Grid";
 import CocktailCard from "../../components/CocktailCard/CocktailCard";
-import { testCocktails } from "../../helpers/testData";
 import "./Search.scss";
-
-function haalIngredienten(drink) {
-  const ingredienten = [];
-  for (let i = 1; i <= 15; i++) {
-    const ingredient = drink[`strIngredient${i}`];
-    if (ingredient && ingredient.trim()) {
-      ingredienten.push(ingredient.trim());
-    }
-  }
-  return ingredienten;
-}
 
 function Search() {
   const [activeTab, setActiveTab] = useState("name");
@@ -24,37 +13,62 @@ function Search() {
   const [filterAlcoholic, setFilterAlcoholic] = useState("all");
   const [filterGlass, setFilterGlass] = useState("");
 
-  const categories = [...new Set(testCocktails.map(c => c.strCategory))];
-  const allIngredients = [...new Set(testCocktails.flatMap(c => haalIngredienten(c)))];
-  const glasses = [...new Set(testCocktails.map(c => c.strGlass))];
+  const [cocktails, setCocktails] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const gefilterdeResultaten = testCocktails.filter(cocktail => {
-    let matchTab = true;
-    if (activeTab === "name" && zoekTerm) {
-      matchTab = cocktail.strDrink.toLowerCase().includes(zoekTerm.toLowerCase());
-    } else if (activeTab === "category" && selectedCategory) {
-      matchTab = cocktail.strCategory === selectedCategory;
-    } else if (activeTab === "ingredient" && selectedIngredient) {
-      const ingredienten = haalIngredienten(cocktail);
-      matchTab = ingredienten.includes(selectedIngredient);
+  const [categories, setCategories] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
+  const [glasses, setGlasses] = useState([]);
+
+  useEffect(() => {
+    fetchFilterOptions().then(options => {
+      setCategories(options.categories)
+      setIngredients(options.ingredients)
+      setGlasses(options.glasses)
+    })
+  }, [])
+
+  useEffect(() => {
+    if (activeTab !== "name") return
+    if (!zoekTerm.trim()) {
+      loadCocktails(() => fetchByLetter(DEFAULT_LETTER))
+      return
     }
+    const timeout = setTimeout(() => {
+      loadCocktails(() => searchByName(zoekTerm))
+    }, DEBOUNCE_DELAY)
+    return () => clearTimeout(timeout)
+  }, [zoekTerm])
 
-    // alcohol filter
-    let matchAlcohol = true;
-    if (filterAlcoholic === "alcoholic") {
-      matchAlcohol = cocktail.strAlcoholic === "Alcoholic";
-    } else if (filterAlcoholic === "non-alcoholic") {
-      matchAlcohol = cocktail.strAlcoholic === "Non alcoholic";
+  useEffect(() => {
+    if (activeTab === "category" && selectedCategory) {
+      loadCocktails(() => searchByCategory(selectedCategory))
     }
-
-    // glass filter
-    let matchGlass = true;
-    if (filterGlass) {
-      matchGlass = cocktail.strGlass === filterGlass;
+    if (activeTab === "ingredient" && selectedIngredient) {
+      loadCocktails(() => searchByIngredient(selectedIngredient))
     }
+  }, [selectedCategory, selectedIngredient])
 
-    return matchTab && matchAlcohol && matchGlass;
-  });
+  async function loadCocktails(fetchFn) {
+    setLoading(true)
+    setError(null)
+    try {
+      const results = await fetchFn()
+      setCocktails(results)
+    } catch (err) {
+      console.error("API error:", err)
+      setError("Kon cocktails niet laden")
+    }
+    setLoading(false)
+  }
+
+  const filtered = cocktails.filter(c => {
+    if (filterAlcoholic === "alcoholic" && c.strAlcoholic !== "Alcoholic") return false
+    if (filterAlcoholic === "non-alcoholic" && c.strAlcoholic !== "Non alcoholic") return false
+    if (filterGlass && c.strGlass !== filterGlass) return false
+    return true
+  })
 
   const hasActiveFilters = filterAlcoholic !== "all" || filterGlass !== "";
 
@@ -109,7 +123,7 @@ function Search() {
               >
                 <option value="">-- Select a category --</option>
                 {categories.map((cat) => (
-                  <option key={cat} value={cat}>{cat}</option>
+                  <option key={cat.strCategory} value={cat.strCategory}>{cat.strCategory}</option>
                 ))}
               </select>
             )}
@@ -121,8 +135,8 @@ function Search() {
                 onChange={(e) => setSelectedIngredient(e.target.value)}
               >
                 <option value="">-- Select an ingredient --</option>
-                {allIngredients.map((ing) => (
-                  <option key={ing} value={ing}>{ing}</option>
+                {ingredients.map((ing) => (
+                  <option key={ing.strIngredient1} value={ing.strIngredient1}>{ing.strIngredient1}</option>
                 ))}
               </select>
             )}
@@ -137,7 +151,7 @@ function Search() {
             </button>
 
             <p className="results-count">
-              Showing {gefilterdeResultaten.length} Drinks
+              {loading ? "Loading..." : `Showing ${filtered.length} Drinks`}
             </p>
 
             <select className="sort-dropdown">
@@ -189,7 +203,7 @@ function Search() {
                 >
                   <option value="">All glasses</option>
                   {glasses.map((g) => (
-                    <option key={g} value={g}>{g}</option>
+                    <option key={g.strGlass} value={g.strGlass}>{g.strGlass}</option>
                   ))}
                 </select>
               </div>
@@ -200,11 +214,14 @@ function Search() {
 
       <div className="search-results-section">
         <div className="search-container">
-          {gefilterdeResultaten.length === 0 ? (
+          {loading && <p className="loading-message">Cocktails laden...</p>}
+          {error && <p className="error-message">{error}</p>}
+          {!loading && !error && filtered.length === 0 && (
             <p className="no-results">Geen cocktails gevonden</p>
-          ) : (
+          )}
+          {!loading && !error && filtered.length > 0 && (
             <Grid>
-              {gefilterdeResultaten.map((cocktail) => (
+              {filtered.map((cocktail) => (
                 <CocktailCard
                   key={cocktail.idDrink}
                   idDrink={cocktail.idDrink}
