@@ -4,6 +4,7 @@ import './App.scss'
 import HeroPage from './pages/Hero/HeroPage'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
+import Toast from './components/Toast/Toast'
 import Search from './pages/Search/Search'
 import Random from './pages/Random/Random'
 import Favorites from './pages/Favorites/Favorites'
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <div className="app">
+      <Toast />
       {!isHero && <Navbar onLoginClick={() => setLoginOpen(true)} />}
 
       <Routes>
