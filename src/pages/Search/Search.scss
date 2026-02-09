@@ -218,3 +218,24 @@
   padding: var(--space-xl);
   color: rgba(0, 0, 0, 0.5);
 }
+
+@media (max-width: 1024px) {
+  .search-container {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .search-header {
+    margin-bottom: var(--space-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter-panel {
+    flex-direction: column;
+  }
+}

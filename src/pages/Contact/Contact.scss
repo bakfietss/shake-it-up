@@ -81,3 +81,14 @@ textarea.form-input {
     cursor: not-allowed;
   }
 }
+
+@media (max-width: 768px) {
+  .contact-container {
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+  }
+
+  textarea.form-input {
+    min-height: 100px;
+  }
+}

@@ -165,3 +165,42 @@
   }
 }
 
+@media (max-width: 900px) {
+  .details-container {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .details-left {
+    align-items: center;
+    text-align: center;
+  }
+
+  .cocktail-title-row {
+    justify-content: center;
+  }
+
+  .cocktail-image-wrapper,
+  .cocktail-image {
+    width: 320px;
+    height: 320px;
+  }
+
+  .details-right {
+    align-items: center;
+    text-align: center;
+  }
+
+  .recipe-item {
+    justify-content: center;
+  }
+
+  .favorite-button-large.btn {
+    align-self: center;
+  }
+
+  .preparation-section {
+    text-align: center;
+  }
+}
+

@@ -464,3 +464,29 @@
   transform: rotate(-11deg) skewY(-41deg);
   transition-delay: 1.2s;
 }
+
+@media (max-width: 1024px) {
+  .auth-container {
+    width: 90%;
+    height: 420px;
+  }
+}
+
+@media (max-width: 800px) {
+  .auth-container {
+    width: 95%;
+    height: auto;
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .info-content.Login {
+    width: 40%;
+    padding-left: 40px;
+  }
+
+  .auth-container.active .curved-shape2 {
+    transform: rotate(-11deg) skewY(-45deg);
+  }
+}
