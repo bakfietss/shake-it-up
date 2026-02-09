@@ -4,8 +4,10 @@ import { useToast } from "../../context/ToastContext";
 import Button from "../../components/Button/Button";
 import "./Login.scss";
 
+const wacht = (ms) => new Promise(r => setTimeout(r, ms));
+
 const Login = ({ isOpen, onClose }) => {
-  const { login, register } = useContext(AuthContext);
+  const { authenticate, register } = useContext(AuthContext);
   const { showToast } = useToast();
   const [isRegisterActive, setIsRegisterActive] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -22,7 +24,7 @@ const Login = ({ isOpen, onClose }) => {
     }
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
     if (!loginEmail || !loginPassword) {
@@ -30,7 +32,10 @@ const Login = ({ isOpen, onClose }) => {
       return;
     }
 
-    const result = login(loginEmail.toLowerCase().trim(), loginPassword);
+    setLoading(true);
+    const result = await authenticate(loginEmail.toLowerCase().trim(), loginPassword);
+    await wacht(800);
+    setLoading(false);
 
     if (result.success) {
       showToast("Je bent ingelogd!", "success");
@@ -40,7 +45,7 @@ const Login = ({ isOpen, onClose }) => {
     }
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
 
     if (!registerUsername || !registerEmail || !registerPassword) {
@@ -53,7 +58,10 @@ const Login = ({ isOpen, onClose }) => {
       return;
     }
 
-    const result = register(registerUsername.trim(), registerEmail.toLowerCase().trim(), registerPassword);
+    setLoading(true);
+    const result = await register(registerUsername.trim(), registerEmail.toLowerCase().trim(), registerPassword);
+    await wacht(800);
+    setLoading(false);
 
     if (result.success) {
       showToast("Account aangemaakt! Je bent nu ingelogd.", "success");
