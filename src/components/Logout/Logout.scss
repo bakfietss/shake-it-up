@@ -1,0 +1,67 @@
+.logout-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--overlay-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.logout-modal {
+  background: var(--color-text-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg) var(--space-xl);
+  box-shadow: var(--shadow-lg);
+  min-width: 320px;
+  max-width: 400px;
+  text-align: center;
+  animation: modalFadeIn 0.2s ease-out forwards;
+}
+
+.logout-modal-tekst {
+  font-family: var(--font-default);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.logout-modal-buttons {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+}
+
+.logout-btn-annuleer,
+.logout-btn-bevestig {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-default);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.logout-btn-annuleer {
+  background: var(--color-text-light);
+  border: 2px solid var(--color-text);
+  color: var(--color-text);
+  &:hover { background: var(--color-light); }
+}
+
+.logout-btn-bevestig {
+  background: var(--color-text);
+  border: 2px solid var(--color-text);
+  color: var(--color-text-light);
+  &:hover { background: var(--color-bg-dark); }
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--overlay-dark);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,9 +12,11 @@
 }
 
 .auth-container {
+  --modal-scale: 1.3;
   position: relative;
   width: 750px;
   height: 450px;
+  transform: scale(var(--modal-scale));
   background: var(--color-bg-modal);
   border: 2px solid var(--color-gold);
   box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
@@ -25,11 +27,11 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: scale(var(--modal-scale)) translateY(30px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(var(--modal-scale)) translateY(0);
   }
 }
 
@@ -467,6 +469,7 @@
 
 @media (max-width: 1024px) {
   .auth-container {
+    --modal-scale: 1.1;
     width: 90%;
     height: 420px;
   }
@@ -474,6 +477,7 @@
 
 @media (max-width: 800px) {
   .auth-container {
+    --modal-scale: 1;
     width: 95%;
     height: auto;
     min-height: 500px;

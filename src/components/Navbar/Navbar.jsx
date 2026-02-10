@@ -1,19 +1,23 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useToast } from "../../context/ToastContext";
+import Logout from "../Logout/Logout";
 import "./Navbar.scss";
 
 const Navbar = ({ onLoginClick }) => {
   const { isAuth, user, logout } = useContext(AuthContext);
   const { showToast } = useToast();
+  const [toonLogoutModal, setToonLogoutModal] = useState(false)
 
-  const handleLogout = () => {
-    logout();
-    showToast("Je bent uitgelogd", "info");
-  };
+  const bevestigLogout = () => {
+    setToonLogoutModal(false)
+    logout()
+    showToast("Je bent uitgelogd", "info")
+  }
 
   return (
+    <>
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">Home</Link>
@@ -23,7 +27,7 @@ const Navbar = ({ onLoginClick }) => {
           <Link to="/favorites" className="navbar-link">Favorites</Link>
           <Link to="/contact" className="navbar-link">Contact</Link>
           {isAuth ? (
-            <button type="button" className="navbar-link navbar-login-btn" onClick={handleLogout}>
+            <button type="button" className="navbar-link navbar-login-btn" onClick={() => setToonLogoutModal(true)}>
               Logout ({user?.username})
             </button>
           ) : (
@@ -34,6 +38,9 @@ const Navbar = ({ onLoginClick }) => {
         </div>
       </div>
     </nav>
+
+    {toonLogoutModal && <Logout onBevestig={bevestigLogout} onAnnuleer={() => setToonLogoutModal(false)} />}
+    </>
   );
 };
 
