@@ -299,7 +299,7 @@
 }
 
 .regi-link {
-  font-size: 14px;
+  font-size: var(--font-size-small);
   text-align: center;
   margin: var(--space-sm) 0 var(--space-xs);
   color: var(--color-text-light);
@@ -315,7 +315,7 @@
     color: var(--color-gold);
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
-    font-size: 14px;
+    font-size: var(--font-size-small);
     padding: 0;
 
     &:hover {

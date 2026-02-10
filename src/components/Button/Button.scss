@@ -73,7 +73,7 @@
 
   &--small {
     padding: var(--space-xs) var(--space-md);
-    font-size: 0.875rem;
+    font-size: var(--font-size-small);
   }
 
   &--medium {
