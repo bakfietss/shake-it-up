@@ -45,6 +45,8 @@ function Contact() {
               placeholder="Your name"
               className="form-input"
               disabled={loading}
+              required
+              minLength={2}
             />
           </div>
 
@@ -59,6 +61,7 @@ function Contact() {
               placeholder="your@email.com"
               className="form-input"
               disabled={loading}
+              required
             />
           </div>
 
@@ -73,6 +76,8 @@ function Contact() {
               rows="6"
               className="form-input"
               disabled={loading}
+              required
+              minLength={10}
             />
           </div>
 

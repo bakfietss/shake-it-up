@@ -9,11 +9,15 @@ function CocktailCard({ idDrink, strDrink, strDrinkThumb, strCategory, strAlcoho
 
   const isFav = isFavorite(idDrink);
 
-  const handleFavoriteClick = (e) => {
+  const handleFavoriteClick = async (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    toggleFavorite({ idDrink, strDrink, strDrinkThumb, strCategory, strAlcoholic, strGlass });
+    const gelukt = await toggleFavorite({ idDrink, strDrink, strDrinkThumb, strCategory, strAlcoholic, strGlass });
+    if (!gelukt) {
+      showToast("Log in om favorieten op te slaan", "warning");
+      return;
+    }
     showToast(isFav ? "Verwijderd uit favorieten" : "Toegevoegd aan favorieten!", isFav ? "info" : "success");
   };
 

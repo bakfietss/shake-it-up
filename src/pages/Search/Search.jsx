@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { DEBOUNCE_DELAY, DEFAULT_LETTER, fetchByLetter, searchByName, searchByCategory, searchByIngredient, fetchFilterOptions } from "./searchHelper";
+import { DEBOUNCE_DELAY, DEFAULT_LETTER, fetchByLetter, searchByName, searchByCategory, searchByIngredient, fetchDetailsForBatch, fetchFilterOptions } from "./searchHelper";
 import Grid from "../../components/Grid/Grid";
 import CocktailCard from "../../components/CocktailCard/CocktailCard";
 import "./Search.scss";
@@ -43,10 +43,16 @@ function Search() {
 
   useEffect(() => {
     if (activeTab === "category" && selectedCategory) {
-      loadCocktails(() => searchByCategory(selectedCategory))
+      loadCocktails(async () => {
+        const filterResults = await searchByCategory(selectedCategory)
+        return await fetchDetailsForBatch(filterResults)
+      })
     }
     if (activeTab === "ingredient" && selectedIngredient) {
-      loadCocktails(() => searchByIngredient(selectedIngredient))
+      loadCocktails(async () => {
+        const filterResults = await searchByIngredient(selectedIngredient)
+        return await fetchDetailsForBatch(filterResults)
+      })
     }
   }, [selectedCategory, selectedIngredient])
 
