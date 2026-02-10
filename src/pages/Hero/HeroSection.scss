@@ -125,14 +125,17 @@
 // cta button
 .hero-cta-wrapper {
   position: absolute;
-  left: 2rem;  // zelfde left als hero-actions
+  left: 2rem;
   z-index: 2;
-
   top: 80vh;
-
   .btn {
-    background: var(--glass-bg);
-    color: var(--color-text-light);
+    background: transparent;
+    color: transparent;
+    border-color: transparent;
+  }
+
+  &.visible .btn {
+    animation: btnFadeIn 2s ease-out forwards;
 
     &:hover {
       background: var(--glass-bg-hover);
@@ -230,3 +233,15 @@
   }
 }
 
+@keyframes btnFadeIn {
+  from {
+    background: transparent;
+    color: transparent;
+    border-color: transparent;
+  }
+  to {
+    background: var(--glass-bg);
+    color: var(--color-text-light);
+    border-color: var(--glass-border);
+  }
+}

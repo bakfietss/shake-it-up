@@ -61,7 +61,7 @@ const HeroSection = ({ animate = false, showContent = true }) => {
               </div>
             </div>
 
-            <div className="hero-cta-wrapper">
+            <div className={`hero-cta-wrapper ${animate ? 'visible' : ''}`}>
               <Button
                 btnType="glass"
                 animation="glow"
