@@ -38,11 +38,31 @@
 }
 
 .notfound-code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.digit {
   font-family: var(--font-title);
   font-size: 8rem;
   font-weight: var(--font-weight-bold);
   color: var(--color-text);
-  margin-bottom: var(--space-md);
+  line-height: 1;
+
+  &.cocktail-icon {
+    width: 6rem;
+    height: 6rem;
+    animation: shake 2s ease-in-out infinite;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
 }
 
 .notfound-actions {
