@@ -325,7 +325,7 @@ $divider: 50%;
     color: var(--color-text-light);
     border: none;
     padding: var(--space-xs) var(--space-md);
-    font-size: 0.875rem;
+    font-size: var(--font-size-small);
     text-transform: none;
 
     &:hover {
@@ -435,7 +435,7 @@ $divider: 50%;
     padding-bottom: var(--space-xs);
 
     h2 {
-      font-size: 0.875rem;
+      font-size: var(--font-size-small);
     }
   }
 
@@ -443,7 +443,7 @@ $divider: 50%;
     padding-top: var(--space-xs);
 
     .btn {
-      font-size: 0.65rem;
+      font-size: var(--font-size-xxs);
       padding: 4px var(--space-xs);
     }
   }
@@ -529,7 +529,7 @@ $divider: 50%;
   }
 
   .winner-title {
-    width: 200px;
+    width: 280px;
     padding-bottom: var(--space-md);
 
     h2 {
@@ -541,7 +541,7 @@ $divider: 50%;
     padding-top: var(--space-md);
 
     .btn {
-      font-size: 0.75rem;
+      font-size: var(--font-size-xs);
       padding: var(--space-xs) var(--space-sm);
     }
   }

@@ -21,7 +21,7 @@ function App() {
   const [loginOpen, setLoginOpen] = useState(false)
 
   return (
-    <div className="app">
+    <div className={!isHero ? "app" : ""}>
       <Toast />
       {!isHero && <Navbar onLoginClick={() => setLoginOpen(true)} />}
 

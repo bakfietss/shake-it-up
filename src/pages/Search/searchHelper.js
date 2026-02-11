@@ -23,6 +23,24 @@ export async function searchByIngredient(ingredient) {
     return res.data.drinks || []
 }
 
+export async function fetchCocktailDetails(id) {
+    const res = await api.get(`/lookup.php?i=${id}`)
+    return res.data.drinks?.[0] || null
+}
+
+export async function fetchDetailsForBatch(drinks) {
+    const results = []
+    for (const drink of drinks) {
+        try {
+            const details = await fetchCocktailDetails(drink.idDrink)
+            if (details) results.push(details)
+        } catch (e) {
+            // skip
+        }
+    }
+    return results
+}
+
 export async function fetchFilterOptions() {
     const [catRes, ingRes, glassRes] = await Promise.all([
         api.get('/list.php?c=list'),

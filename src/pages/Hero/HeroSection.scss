@@ -38,19 +38,19 @@
 }
 
 .hero-right {
-  position: relative; 
-  padding: 2rem;
+  position: relative;
+  padding: var(--space-md);
 }
 
 .hero-content {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: var(--space-md);
+  right: var(--space-md);
   z-index: 2;
 
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   align-items: flex-end;
   text-align: right;
   color: var(--color-text-light);
@@ -59,7 +59,7 @@
   max-inline-size: 90vw;
   overflow-wrap: anywhere;
 
-  padding: 0.75rem 1rem;
+  padding: var(--space-xs) var(--space-sm);
   backdrop-filter: blur(2px);
 
   h1 {
@@ -81,7 +81,7 @@
   display: flex;
   flex-direction: row;
   align-items: baseline;
-  gap: 1rem;
+  gap: var(--space-sm);
   white-space: nowrap;
 }
 
@@ -91,7 +91,7 @@
 
   top: 30vh;
 
-  left: 2rem;
+  left: var(--space-md);
   z-index: 2;
 
   display: flex;
@@ -106,7 +106,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2rem;
+  gap: var(--space-md);
 
   color: var(--color-text-light);
   text-align: left;
@@ -125,14 +125,17 @@
 // cta button
 .hero-cta-wrapper {
   position: absolute;
-  left: 2rem;  // zelfde left als hero-actions
+  left: var(--space-md);
   z-index: 2;
-
   top: 80vh;
-
   .btn {
-    background: var(--glass-bg);
-    color: var(--color-text-light);
+    background: transparent;
+    color: transparent;
+    border-color: transparent;
+  }
+
+  &.visible .btn {
+    animation: btnFadeIn 2s ease-out forwards;
 
     &:hover {
       background: var(--glass-bg-hover);
@@ -164,7 +167,7 @@
   .hero-cta-wrapper {
     top: 80vh;
     left: auto;
-    right: 2rem;
+    right: var(--space-md);
   }
 
   .bullet-points h3 {
@@ -207,7 +210,7 @@
   .hero-actions {
     top: 40vh;
     left: auto;
-    right: 2rem;
+    right: var(--space-md);
     align-items: flex-end;
     max-inline-size: 70vw;
   }
@@ -225,8 +228,20 @@
   // CTA button naar rechts
   .hero-cta-wrapper {
     left: auto;
-    right: 2rem;
+    right: var(--space-md);
     top: 80vh;
   }
 }
 
+@keyframes btnFadeIn {
+  from {
+    background: transparent;
+    color: transparent;
+    border-color: transparent;
+  }
+  to {
+    background: var(--glass-bg);
+    color: var(--color-text-light);
+    border-color: var(--glass-border);
+  }
+}

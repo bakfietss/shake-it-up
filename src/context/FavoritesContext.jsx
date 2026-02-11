@@ -43,7 +43,10 @@ export function FavoritesProvider({ children }) {
                 ...fav,
                 idDrink: fav.cocktailId,
                 strDrink: fav.cocktailName,
-                strDrinkThumb: fav.cocktailImage
+                strDrinkThumb: fav.cocktailImage,
+                strCategory: fav.cocktailCategory || null,
+                strAlcoholic: fav.cocktailAlcoholic || null,
+                strGlass: fav.cocktailGlass || null
             }))
 
             setFavorites(userFavorites)
