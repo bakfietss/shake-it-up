@@ -4,9 +4,9 @@ import "./Contact.scss";
 
 function Contact() {
   const [formData, setFormData] = useState({
-    naam: "",
+    name: "",
     email: "",
-    bericht: ""
+    message: ""
   });
 
   const [loading, setLoading] = useState(false);
@@ -26,7 +26,7 @@ function Contact() {
     // fake delay
     setTimeout(() => {
       setLoading(false);
-      setFormData({ naam: "", email: "", bericht: "" });
+      setFormData({ name: "", email: "", message: "" });
     }, 2000);
   };
 
@@ -35,12 +35,12 @@ function Contact() {
       <div className="contact-container">
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="naam">Name</label>
+            <label htmlFor="name">Name</label>
             <input
               type="text"
-              id="naam"
-              name="naam"
-              value={formData.naam}
+              id="name"
+              name="name"
+              value={formData.name}
               onChange={handleChange}
               placeholder="Your name"
               className="form-input"
@@ -66,11 +66,11 @@ function Contact() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="bericht">Message</label>
+            <label htmlFor="message">Message</label>
             <textarea
-              id="bericht"
-              name="bericht"
-              value={formData.bericht}
+              id="message"
+              name="message"
+              value={formData.message}
               onChange={handleChange}
               placeholder="Your message..."
               rows="6"

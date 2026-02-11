@@ -43,19 +43,19 @@ function Details() {
     }
   }, [id]);
 
-  function haalIngredienten(drink) {
-    const ingredienten = [];
+  function getIngredients(drink) {
+    const ingredients = [];
     for (let i = 1; i <= 15; i++) {
       const ingredient = drink[`strIngredient${i}`];
       const measure = drink[`strMeasure${i}`];
       if (ingredient && ingredient.trim()) {
-        ingredienten.push({
+        ingredients.push({
           ingredient: ingredient.trim(),
           measure: measure ? measure.trim() : ""
         });
       }
     }
-    return ingredienten;
+    return ingredients;
   }
 
   const handleFavoriteClick = () => {
@@ -91,7 +91,7 @@ function Details() {
     );
   }
 
-  const ingredienten = haalIngredienten(cocktail);
+  const ingredients = getIngredients(cocktail);
 
   return (
     <div className="details-page">
@@ -119,7 +119,7 @@ function Details() {
           <h2 className="recipe-heading">Receptuur</h2>
 
           <div className="recipe-list">
-            {ingredienten.map((item, index) => (
+            {ingredients.map((item, index) => (
               <div key={index} className="recipe-item">
                 <span className="recipe-label">Component {index + 1}:</span>
                 <span className="recipe-text">

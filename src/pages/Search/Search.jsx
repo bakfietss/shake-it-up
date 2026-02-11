@@ -8,14 +8,14 @@ import "./Search.scss";
 function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tab") || "name";
-  const zoekTerm = searchParams.get("q") || "";
+  const searchTerm = searchParams.get("q") || "";
   const selectedCategory = searchParams.get("category") || "";
   const selectedIngredient = searchParams.get("ingredient") || "";
 
   const setActiveTab = (tab) => {
     setSearchParams(prev => { prev.set("tab", tab); return prev })
   }
-  const setZoekTerm = (q) => {
+  const setSearchTerm = (q) => {
     setSearchParams(prev => { prev.set("q", q); return prev })
   }
   const setSelectedCategory = (cat) => {
@@ -47,15 +47,15 @@ function Search() {
 
   useEffect(() => {
     if (activeTab !== "name") return
-    if (!zoekTerm.trim()) {
+    if (!searchTerm.trim()) {
       loadCocktails(() => fetchByLetter(DEFAULT_LETTER))
       return
     }
     const timeout = setTimeout(() => {
-      loadCocktails(() => searchByName(zoekTerm))
+      loadCocktails(() => searchByName(searchTerm))
     }, DEBOUNCE_DELAY)
     return () => clearTimeout(timeout)
-  }, [zoekTerm])
+  }, [searchTerm])
 
   useEffect(() => {
     if (activeTab === "category" && selectedCategory) {
@@ -132,8 +132,8 @@ function Search() {
                 type="text"
                 className="search-input"
                 placeholder="Search by cocktail name..."
-                value={zoekTerm}
-                onChange={(e) => setZoekTerm(e.target.value)}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
             )}
 

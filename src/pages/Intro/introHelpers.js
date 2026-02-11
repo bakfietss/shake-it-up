@@ -44,7 +44,7 @@ export function scheduleTimers(entries) {
     timerIds.push(id)
   }
 
-  return function stopAlles() {
+  return function stopAll() {
     for (const id of timerIds) {
       clearTimeout(id)
     }

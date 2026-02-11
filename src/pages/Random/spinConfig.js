@@ -23,36 +23,36 @@ const CENTER_Y = 0;
 const VISIBLE_RANGE = 500;
 
 const getEllipseRadiusX = () => {
-  const breedte = window.innerWidth;
+  const width = window.innerWidth;
 
-  if (breedte <= 1920) {
+  if (width <= 1920) {
     return 2200;
   }
   return ELLIPSE_RADIUS_X;
 };
 
 const getCenterX = () => {
-  const breedte = window.innerWidth;
+  const width = window.innerWidth;
 
-  if (breedte <= 768) {
+  if (width <= 768) {
     return 150;
   }
-  if (breedte <= 1024) {
+  if (width <= 1024) {
     return 250;
   }
-  if (breedte <= 1920) {
+  if (width <= 1920) {
     return 395;
   }
   return 500;
 };
 
 const getEllipseRadiusY = () => {
-  const breedte = window.innerWidth;
+  const width = window.innerWidth;
 
-  if (breedte <= 768) {
+  if (width <= 768) {
     return 0;
   }
-  if (breedte <= 1920) {
+  if (width <= 1920) {
     return 440;
   }
   return ELLIPSE_RADIUS_Y;
@@ -80,9 +80,9 @@ export const TOTAL_IMAGES = PLACEHOLDER_IMAGES.length;
 // bereken waar een image staat op de ellips
 export const getImagePosition = (index, rotationOffset = 0) => {
   if (isSimpleMode()) {
-    const schermBreedte = window.innerWidth;
-    const centerPos = schermBreedte / 2;
-    const spreadBreedte = schermBreedte * 3.5;
+    const screenWidth = window.innerWidth;
+    const centerPos = screenWidth / 2;
+    const spreadWidth = screenWidth * 3.5;
     const centerOffset = -30;
 
     const rawAngle = (index / TOTAL_IMAGES) * 360 + rotationOffset;
@@ -91,10 +91,10 @@ export const getImagePosition = (index, rotationOffset = 0) => {
     const distanceFrom180 = Math.abs(((angleDegrees - 180 + 540) % 360) - 180);
     const isWinner = distanceFrom180 < 5;
 
-    const offsetVanMidden = ((angleDegrees - 180 + 540) % 360) - 180;
-    const x = centerPos + centerOffset + (offsetVanMidden / 180) * (spreadBreedte / 2);
+    const offsetFromCenter = ((angleDegrees - 180 + 540) % 360) - 180;
+    const x = centerPos + centerOffset + (offsetFromCenter / 180) * (spreadWidth / 2);
 
-    const isVisible = x > -150 && x < schermBreedte + 150;
+    const isVisible = x > -150 && x < screenWidth + 150;
 
     return { x, y: 0, scale: 1, zIndex: isWinner ? 100 : 50, isVisible, isWinner };
   }

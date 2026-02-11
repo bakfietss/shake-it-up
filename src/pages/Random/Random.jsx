@@ -36,9 +36,9 @@ const Random = () => {
   // Laad recent spins uit localStorage bij eerste load
   useEffect(() => {
     try {
-      const opgeslagen = localStorage.getItem(RECENT_SPINS_KEY);
-      if (opgeslagen) {
-        const parsed = JSON.parse(opgeslagen);
+      const saved = localStorage.getItem(RECENT_SPINS_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
         setRecentSpins(parsed);
       }
     } catch (err) {
@@ -47,39 +47,39 @@ const Random = () => {
   }, []);
 
   // Voeg cocktail toe aan recent spins
-  const voegToeAanRecentSpins = (nieuweCocktail) => {
-    setRecentSpins((huidige) => {
-      const gefilterd = huidige
-        .filter((spin) => spin.idDrink !== nieuweCocktail.idDrink)
-        .map((spin) => ({ ...spin, isNieuw: false }));
+  const addRecentSpin = (newCocktail) => {
+    setRecentSpins((current) => {
+      const filtered = current
+        .filter((spin) => spin.idDrink !== newCocktail.idDrink)
+        .map((spin) => ({ ...spin, isNew: false }));
 
-      const bijgewerkt = [
+      const updated = [
         {
-          idDrink: nieuweCocktail.idDrink,
-          strDrink: nieuweCocktail.strDrink,
-          strDrinkThumb: nieuweCocktail.strDrinkThumb,
-          isNieuw: true,
+          idDrink: newCocktail.idDrink,
+          strDrink: newCocktail.strDrink,
+          strDrinkThumb: newCocktail.strDrinkThumb,
+          isNew: true,
         },
-        ...gefilterd,
+        ...filtered,
       ].slice(0, MAX_RECENT_SPINS);
 
       try {
-        const voorOpslag = bijgewerkt.map(({ isNieuw, ...rest }) => rest);
-        localStorage.setItem(RECENT_SPINS_KEY, JSON.stringify(voorOpslag));
+        const forStorage = updated.map(({ isNew, ...rest }) => rest);
+        localStorage.setItem(RECENT_SPINS_KEY, JSON.stringify(forStorage));
       } catch (err) {
         console.error("Kon recent spins niet opslaan:", err);
       }
-      return bijgewerkt;
+      return updated;
     });
 
     setTimeout(() => {
-      setRecentSpins((huidige) =>
-        huidige.map((spin) => ({ ...spin, isNieuw: false }))
+      setRecentSpins((current) =>
+        current.map((spin) => ({ ...spin, isNew: false }))
       );
     }, 600);
   };
 
-  const haalRandomCocktailOp = async () => {
+  const fetchRandomCocktail = async () => {
     try {
       const response = await api.get('/random.php');
       const drink = response.data.drinks[0];
@@ -89,25 +89,25 @@ const Random = () => {
     }
   };
 
-  // Spin het wiel met GSAP
-  const spinWiel = (onComplete) => {
+  // Spin de carrousel met GSAP
+  const spinCarousel = (onComplete) => {
     const randomImageIndex = Math.floor(Math.random() * TOTAL_IMAGES);
     const anglePerImage = 360 / TOTAL_IMAGES;
     const targetOffset = 180 - (randomImageIndex * anglePerImage);
 
-    const huidigeOffset = ((rotationRef.current.value % 360) + 360) % 360;
+    const currentOffset = ((rotationRef.current.value % 360) + 360) % 360;
 
-    let basisDraai = targetOffset - huidigeOffset;
-    if (basisDraai < 0) basisDraai += 360;
+    let baseRotation = targetOffset - currentOffset;
+    if (baseRotation < 0) baseRotation += 360;
 
-    const randomRotaties = Math.floor(Math.random() * (MAX_ROTATIONS - MIN_ROTATIONS + 1));
-    const extraRotaties = MIN_ROTATIONS + randomRotaties;
-    const totaalDraai = basisDraai + (extraRotaties * 360);
+    const randomRotations = Math.floor(Math.random() * (MAX_ROTATIONS - MIN_ROTATIONS + 1));
+    const extraRotations = MIN_ROTATIONS + randomRotations;
+    const totalRotation = baseRotation + (extraRotations * 360);
 
-    const eindRotatie = rotationRef.current.value + totaalDraai;
+    const endRotation = rotationRef.current.value + totalRotation;
 
     gsap.to(rotationRef.current, {
-      value: eindRotatie,
+      value: endRotation,
       duration: SPIN_DURATION,
       ease: "power2.out",
       onUpdate: () => {
@@ -142,14 +142,14 @@ const Random = () => {
   const startSpin = async () => {
     setIsSpinning(true);
 
-    const cocktailPromise = haalRandomCocktailOp();
+    const cocktailPromise = fetchRandomCocktail();
 
-    spinWiel(async () => {
-      const nieuweCocktail = await cocktailPromise;
+    spinCarousel(async () => {
+      const newCocktail = await cocktailPromise;
 
-      if (nieuweCocktail) {
-        setWinnerCocktail(nieuweCocktail);
-        voegToeAanRecentSpins(nieuweCocktail);
+      if (newCocktail) {
+        setWinnerCocktail(newCocktail);
+        addRecentSpin(newCocktail);
 
         setTimeout(() => {
           setShowWinnerContent(true);
@@ -197,7 +197,7 @@ const Random = () => {
                     <Link
                       key={spin.idDrink}
                       to={`/cocktail/${spin.idDrink}`}
-                      className={`recent-spin-item ${spin.isNieuw ? 'nieuw' : ''}`}
+                      className={`recent-spin-item ${spin.isNew ? 'new' : ''}`}
                     >
                       <img src={spin.strDrinkThumb} alt={spin.strDrink} />
                     </Link>
