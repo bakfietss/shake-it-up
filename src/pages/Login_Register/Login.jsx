@@ -38,8 +38,8 @@ const Login = ({ isOpen, onClose }) => {
     setLoading(false);
 
     if (result.success) {
-      showToast("Je bent ingelogd!", "success");
       onClose();
+      showToast("Je bent ingelogd!", "success");
     } else {
       showToast(result.error, "error");
     }
@@ -64,8 +64,8 @@ const Login = ({ isOpen, onClose }) => {
     setLoading(false);
 
     if (result.success) {
-      showToast("Account aangemaakt! Je bent nu ingelogd.", "success");
       onClose();
+      showToast("Account aangemaakt! Je bent nu ingelogd.", "success");
     } else {
       showToast(result.error, "error");
     }
