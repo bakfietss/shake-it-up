@@ -1,14 +1,30 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { DEBOUNCE_DELAY, DEFAULT_LETTER, fetchByLetter, searchByName, searchByCategory, searchByIngredient, fetchDetailsForBatch, fetchFilterOptions } from "./searchHelper";
 import Grid from "../../components/Grid/Grid";
 import CocktailCard from "../../components/CocktailCard/CocktailCard";
 import "./Search.scss";
 
 function Search() {
-  const [activeTab, setActiveTab] = useState("name");
-  const [zoekTerm, setZoekTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedIngredient, setSelectedIngredient] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get("tab") || "name";
+  const zoekTerm = searchParams.get("q") || "";
+  const selectedCategory = searchParams.get("category") || "";
+  const selectedIngredient = searchParams.get("ingredient") || "";
+
+  const setActiveTab = (tab) => {
+    setSearchParams(prev => { prev.set("tab", tab); return prev })
+  }
+  const setZoekTerm = (q) => {
+    setSearchParams(prev => { prev.set("q", q); return prev })
+  }
+  const setSelectedCategory = (cat) => {
+    setSearchParams(prev => { prev.set("category", cat); return prev })
+  }
+  const setSelectedIngredient = (ing) => {
+    setSearchParams(prev => { prev.set("ingredient", ing); return prev })
+  }
+
   const [showFilters, setShowFilters] = useState(false);
   const [filterAlcoholic, setFilterAlcoholic] = useState("all");
   const [filterGlass, setFilterGlass] = useState("");
