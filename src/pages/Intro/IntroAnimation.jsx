@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import "./IntroAnimation.scss";
 
 import { pathLengths, pathData, INTRO_TIMELINE, scheduleTimers } from "./introHelpers";
