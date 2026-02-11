@@ -58,7 +58,7 @@
   background: var(--color-text);
   border: 2px solid var(--color-text);
   color: var(--color-text-light);
-  &:hover { background: var(--color-bg-dark); }
+  &:hover { background: var(--color-bg-modal); }
 }
 
 @keyframes modalFadeIn {

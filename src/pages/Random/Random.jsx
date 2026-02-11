@@ -217,9 +217,6 @@ const Random = () => {
                   key={index}
                   className="wheel-image-wrapper"
                   style={{
-                    position: 'absolute',
-                    left: '0',
-                    top: '50%',
                     transform: `translate(${pos.x}px, ${pos.y}px) scale(${pos.scale})`,
                     zIndex: pos.zIndex,
                     opacity: pos.isVisible ? 1 : 0,

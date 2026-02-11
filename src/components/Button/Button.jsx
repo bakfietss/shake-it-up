@@ -7,7 +7,6 @@ export default function Button({
   btnType = "solid",
   animation = "",
   size = "medium",
-  active = false,
   disabled = false,
   type = "button",
   onClick,
@@ -18,7 +17,6 @@ export default function Button({
     `btn--${btnType}`,
     `btn--${size}`,
     animation && `btn--anim-${animation}`,
-    active && "btn--active",
     disabled && "btn--disabled",
     className
   ].filter(Boolean).join(" ");

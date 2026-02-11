@@ -5,7 +5,6 @@ export const INTRO_TIMELINE = {
   START_REVEAL_AT: 5600,
 
   FADE_CLASS: "hidden",
-  FADE_PROPERTY: "opacity",
   FADE_DURATION_MS: 2000,
 };
 

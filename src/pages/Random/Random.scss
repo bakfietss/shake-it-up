@@ -193,6 +193,9 @@ $divider: 50%;
 }
 
 .wheel-image-wrapper {
+  position: absolute;
+  left: 0;
+  top: 50%;
   width: 200px;
   height: 280px;
   margin-left: -100px;
