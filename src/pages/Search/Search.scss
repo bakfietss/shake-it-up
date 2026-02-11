@@ -213,7 +213,9 @@
   }
 }
 
-.no-results {
+.no-results,
+.loading-message,
+.error-message {
   text-align: center;
   padding: var(--space-xl);
   color: rgba(0, 0, 0, 0.5);

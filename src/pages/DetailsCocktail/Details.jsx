@@ -136,8 +136,8 @@ function Details() {
             </div>
           )}
 
-          <Button btnType="solid" className="favorite-button-large" onClick={handleFavoriteClick}>
-            {isFav ? "Remove Favorite" : "Save Favorite"}
+          <Button btnType="solid" className="back-button" onClick={() => navigate(-1)}>
+            Previous Page
           </Button>
         </div>
       </div>
