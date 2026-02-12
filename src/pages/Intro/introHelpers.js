@@ -5,7 +5,6 @@ export const INTRO_TIMELINE = {
   START_REVEAL_AT: 5600,
 
   FADE_CLASS: "hidden",
-  FADE_PROPERTY: "opacity",
   FADE_DURATION_MS: 2000,
 };
 
@@ -45,7 +44,7 @@ export function scheduleTimers(entries) {
     timerIds.push(id)
   }
 
-  return function stopAlles() {
+  return function stopAll() {
     for (const id of timerIds) {
       clearTimeout(id)
     }

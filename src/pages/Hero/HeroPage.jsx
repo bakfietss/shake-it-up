@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import HeroSection from "./HeroSection";
 import IntroAnimation from "../Intro/IntroAnimation";
 

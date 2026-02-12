@@ -1,14 +1,30 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { DEBOUNCE_DELAY, DEFAULT_LETTER, fetchByLetter, searchByName, searchByCategory, searchByIngredient, fetchDetailsForBatch, fetchFilterOptions } from "./searchHelper";
 import Grid from "../../components/Grid/Grid";
 import CocktailCard from "../../components/CocktailCard/CocktailCard";
 import "./Search.scss";
 
 function Search() {
-  const [activeTab, setActiveTab] = useState("name");
-  const [zoekTerm, setZoekTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedIngredient, setSelectedIngredient] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get("tab") || "name";
+  const searchTerm = searchParams.get("q") || "";
+  const selectedCategory = searchParams.get("category") || "";
+  const selectedIngredient = searchParams.get("ingredient") || "";
+
+  const setActiveTab = (tab) => {
+    setSearchParams(prev => { prev.set("tab", tab); return prev })
+  }
+  const setSearchTerm = (q) => {
+    setSearchParams(prev => { prev.set("q", q); return prev })
+  }
+  const setSelectedCategory = (cat) => {
+    setSearchParams(prev => { prev.set("category", cat); return prev })
+  }
+  const setSelectedIngredient = (ing) => {
+    setSearchParams(prev => { prev.set("ingredient", ing); return prev })
+  }
+
   const [showFilters, setShowFilters] = useState(false);
   const [filterAlcoholic, setFilterAlcoholic] = useState("all");
   const [filterGlass, setFilterGlass] = useState("");
@@ -31,15 +47,15 @@ function Search() {
 
   useEffect(() => {
     if (activeTab !== "name") return
-    if (!zoekTerm.trim()) {
+    if (!searchTerm.trim()) {
       loadCocktails(() => fetchByLetter(DEFAULT_LETTER))
       return
     }
     const timeout = setTimeout(() => {
-      loadCocktails(() => searchByName(zoekTerm))
+      loadCocktails(() => searchByName(searchTerm))
     }, DEBOUNCE_DELAY)
     return () => clearTimeout(timeout)
-  }, [zoekTerm])
+  }, [searchTerm])
 
   useEffect(() => {
     if (activeTab === "category" && selectedCategory) {
@@ -116,8 +132,8 @@ function Search() {
                 type="text"
                 className="search-input"
                 placeholder="Search by cocktail name..."
-                value={zoekTerm}
-                onChange={(e) => setZoekTerm(e.target.value)}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
             )}
 

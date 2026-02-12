@@ -15,10 +15,10 @@ import PersonIcon from "../../assets/navbar-svgs/person-circle-svgrepo-com.svg";
 const Navbar = ({ onLoginClick }) => {
   const { isAuth, user, logout } = useContext(AuthContext);
   const { showToast } = useToast();
-  const [toonLogoutModal, setToonLogoutModal] = useState(false)
+  const [logoutOpen, setLogoutOpen] = useState(false)
 
-  const bevestigLogout = () => {
-    setToonLogoutModal(false)
+  const confirmLogout = () => {
+    setLogoutOpen(false)
     logout()
     showToast("Je bent uitgelogd", "info")
   }
@@ -37,7 +37,7 @@ const Navbar = ({ onLoginClick }) => {
               <button
                 type="button"
                 className="navbar-icon-link navbar-auth-btn navbar-logged-in"
-                onClick={() => setToonLogoutModal(true)}
+                onClick={() => setLogoutOpen(true)}
               >
                 <span className="navbar-label navbar-label-left">Uitloggen</span>
                 <span className="navbar-username">{user?.username || user?.email?.split('@')[0]}</span>
@@ -73,7 +73,7 @@ const Navbar = ({ onLoginClick }) => {
         </div>
       </nav>
 
-      {toonLogoutModal && <Logout onBevestig={bevestigLogout} onAnnuleer={() => setToonLogoutModal(false)} />}
+      {logoutOpen && <Logout onConfirm={confirmLogout} onCancel={() => setLogoutOpen(false)} />}
     </>
   );
 };

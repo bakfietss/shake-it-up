@@ -7,7 +7,6 @@
 
   // accent
   --color-gold: #D4AF37;
-  --color-gold-light: #E8D21D;
 
   // achtergronden
   --color-beige: #faf8f3;
@@ -17,6 +16,11 @@
   --glass-bg: rgba(255, 255, 255, 0.1);
   --glass-bg-hover: rgba(255, 255, 255, 0.2);
   --glass-border: rgba(255, 255, 255, 0.3);
+
+  // borders + hover
+  --hover-bg-subtle: rgba(0, 0, 0, 0.05);
+  --border-light: rgba(0, 0, 0, 0.2);
+  --border-subtle: rgba(0, 0, 0, 0.1);
 
   // button gradients
   --gradient-warm: linear-gradient(180deg, #FFE078 0%, #E97D6F 100%);
@@ -125,10 +129,8 @@
 
   // border radius
   --radius-pill: 999px;
-  --radius-lg: 50px;
   --radius-md: 12px;
   --radius-sm: 8px;
-  --radius-xs: 4px;
 
   // shadows
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);

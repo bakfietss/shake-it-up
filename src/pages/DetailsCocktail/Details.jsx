@@ -5,6 +5,7 @@ import api from "../../helpers/api";
 import { AuthContext } from "../../context/AuthContext";
 import { useFavorites } from "../../context/FavoritesContext";
 import { useToast } from "../../context/ToastContext";
+import FavoriteButton from "../../components/FavoriteButton/FavoriteButton";
 import "./Details.scss";
 
 function Details() {
@@ -43,19 +44,19 @@ function Details() {
     }
   }, [id]);
 
-  function haalIngredienten(drink) {
-    const ingredienten = [];
+  function getIngredients(drink) {
+    const ingredients = [];
     for (let i = 1; i <= 15; i++) {
       const ingredient = drink[`strIngredient${i}`];
       const measure = drink[`strMeasure${i}`];
       if (ingredient && ingredient.trim()) {
-        ingredienten.push({
+        ingredients.push({
           ingredient: ingredient.trim(),
           measure: measure ? measure.trim() : ""
         });
       }
     }
-    return ingredienten;
+    return ingredients;
   }
 
   const handleFavoriteClick = () => {
@@ -91,7 +92,7 @@ function Details() {
     );
   }
 
-  const ingredienten = haalIngredienten(cocktail);
+  const ingredients = getIngredients(cocktail);
 
   return (
     <div className="details-page">
@@ -99,11 +100,7 @@ function Details() {
         <div className="details-left">
           <div className="cocktail-title-row">
             <h1 className="cocktail-name">{cocktail.strDrink}</h1>
-            <button className={`favorite-heart ${isFav ? "is-favorite" : ""}`} onClick={handleFavoriteClick}>
-              <svg viewBox="0 0 24 24">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-              </svg>
-            </button>
+            <FavoriteButton className="favorite-heart" isFavorite={isFav} onClick={handleFavoriteClick} />
           </div>
 
           <div className="cocktail-image-wrapper">
@@ -119,7 +116,7 @@ function Details() {
           <h2 className="recipe-heading">Receptuur</h2>
 
           <div className="recipe-list">
-            {ingredienten.map((item, index) => (
+            {ingredients.map((item, index) => (
               <div key={index} className="recipe-item">
                 <span className="recipe-label">Component {index + 1}:</span>
                 <span className="recipe-text">
@@ -136,8 +133,8 @@ function Details() {
             </div>
           )}
 
-          <Button btnType="solid" className="favorite-button-large" onClick={handleFavoriteClick}>
-            {isFav ? "Remove Favorite" : "Save Favorite"}
+          <Button btnType="solid" className="back-button" onClick={() => navigate(-1)}>
+            Previous Page
           </Button>
         </div>
       </div>

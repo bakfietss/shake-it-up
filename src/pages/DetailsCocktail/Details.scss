@@ -32,10 +32,8 @@
 }
 
 .cocktail-name {
-  font-family: var(--font-default);
   font-size: var(--font-size-h2);
   font-weight: var(--font-weight-normal);
-  color: var(--color-text);
   margin: 0;
 }
 
@@ -54,8 +52,8 @@
   }
 
   svg {
-    width: 32px;
-    height: 32px;
+    width: var(--svg-s);
+    height: var(--svg-s);
     fill: none;
     stroke: var(--color-text);
     stroke-width: 1.5;
@@ -92,10 +90,8 @@
 }
 
 .recipe-heading {
-  font-family: var(--font-default);
   font-size: var(--font-size-h3);
   font-weight: var(--font-weight-normal);
-  color: var(--color-text);
   margin: 0;
   font-style: italic;
 }
@@ -114,43 +110,33 @@
 }
 
 .recipe-label {
-  font-family: var(--font-default);
-  font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-text);
 }
 
 .recipe-text {
-  font-family: var(--font-default);
-  font-size: var(--font-size-base);
   color: var(--color-text-muted);
-  line-height: 1.6;
 }
 
 .preparation-section {
   margin-top: var(--space-md);
   padding-top: var(--space-lg);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--border-subtle);
 }
 
 .preparation-heading {
-  font-family: var(--font-default);
   font-size: var(--font-size-h3);
   font-weight: var(--font-weight-normal);
-  color: var(--color-text);
   margin: 0 0 var(--space-md) 0;
   font-style: italic;
 }
 
 .preparation-text {
-  font-family: var(--font-default);
-  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   line-height: 1.7;
   margin: 0;
 }
 
-.favorite-button-large.btn {
+.back-button.btn {
   margin-top: var(--space-lg);
   align-self: flex-start;
   background: var(--gradient-warm);
@@ -195,7 +181,7 @@
     justify-content: center;
   }
 
-  .favorite-button-large.btn {
+  .back-button.btn {
     align-self: center;
   }
 

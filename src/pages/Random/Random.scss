@@ -27,7 +27,6 @@ $divider: 50%;
   width: 100%;
   height: 100%;
   padding: var(--navbar-height) var(--space-xl) var(--footer-height) var(--space-xl);
-  box-sizing: border-box;
 }
 
 .random-left {
@@ -76,10 +75,8 @@ $divider: 50%;
 }
 
 .spin-description {
-  font-family: var(--font-default);
   font-size: var(--font-size-h3-min);
   color: var(--color-text-muted);
-  line-height: 1.6;
   text-align: center;
   margin: 0;
   max-width: 500px;
@@ -98,7 +95,6 @@ $divider: 50%;
 }
 
 .recent-label {
-  font-family: var(--font-default);
   font-size: var(--font-size-h3-min);
   color: var(--color-text-muted);
   display: block;
@@ -123,7 +119,7 @@ $divider: 50%;
     object-fit: cover;
   }
 
-  &.nieuw {
+  &.new {
     animation: slideInFade 0.5s ease-out forwards;
   }
 }
@@ -193,6 +189,9 @@ $divider: 50%;
 }
 
 .wheel-image-wrapper {
+  position: absolute;
+  left: 0;
+  top: 50%;
   width: 200px;
   height: 280px;
   margin-left: -100px;
@@ -302,10 +301,8 @@ $divider: 50%;
   padding-bottom: var(--space-md);
 
   h2 {
-    font-family: var(--font-default);
     font-size: var(--font-size-h3-min);
     font-weight: var(--font-weight-normal);
-    color: var(--color-text);
     margin: 0;
     line-height: 1.3;
     word-wrap: break-word;
@@ -466,7 +463,6 @@ $divider: 50%;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: 80px;
     padding-bottom: 0px;
   }
 

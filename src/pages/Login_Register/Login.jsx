@@ -4,7 +4,7 @@ import { useToast } from "../../context/ToastContext";
 import Button from "../../components/Button/Button";
 import "./Login.scss";
 
-const wacht = (ms) => new Promise(r => setTimeout(r, ms));
+const loginDelay = (ms) => new Promise(r => setTimeout(r, ms));
 
 const Login = ({ isOpen, onClose }) => {
   const { authenticate, register } = useContext(AuthContext);
@@ -34,7 +34,7 @@ const Login = ({ isOpen, onClose }) => {
 
     setLoading(true);
     const result = await authenticate(loginEmail.toLowerCase().trim(), loginPassword);
-    await wacht(800);
+    await loginDelay(800);
     setLoading(false);
 
     if (result.success) {
@@ -60,7 +60,7 @@ const Login = ({ isOpen, onClose }) => {
 
     setLoading(true);
     const result = await register(registerUsername.trim(), registerEmail.toLowerCase().trim(), registerPassword);
-    await wacht(800);
+    await loginDelay(800);
     setLoading(false);
 
     if (result.success) {

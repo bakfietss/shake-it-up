@@ -8,7 +8,7 @@
   width: 100%;
   background: var(--color-text-light);
   position: relative;
-  padding-top: 80px;
+  padding-top: var(--navbar-height);
 
   &::before {
     content: '';
@@ -42,16 +42,12 @@
   h1 {
     font-family: var(--font-title);
     font-size: var(--font-size-h1);
-    color: var(--color-text);
     margin: 0 0 var(--space-sm) 0;
   }
 
   p {
-    font-family: var(--font-default);
     font-size: var(--font-size-body);
-    color: var(--color-text);
     opacity: 0.7;
-    margin: 0;
     max-width: 700px;
     margin: 0 auto;
   }
@@ -66,17 +62,14 @@
 
 .tab-btn {
   padding: var(--space-sm) var(--space-lg);
-  font-family: var(--font-default);
-  font-size: var(--font-size-base);
   border: 2px solid var(--color-text);
   border-radius: var(--radius-md);
   background: transparent;
-  color: var(--color-text);
   cursor: pointer;
   transition: var(--transition-normal);
 
   &:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--hover-bg-subtle);
   }
 
   &.active {
@@ -95,11 +88,8 @@
   width: 100%;
   padding: var(--space-sm) var(--space-md);
   background: var(--color-text-light);
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--border-light);
   border-radius: var(--radius-md);
-  font-family: var(--font-default);
-  font-size: var(--font-size-base);
-  color: var(--color-text);
   transition: var(--transition-normal);
 
   &:focus {
@@ -118,7 +108,7 @@
 
 .filter-panel {
   background: var(--color-text-light);
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: var(--space-md);
   margin-bottom: var(--space-lg);
@@ -135,10 +125,7 @@
 }
 
 .filter-label {
-  font-family: var(--font-default);
-  font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-text);
 }
 
 .filter-options {
@@ -151,9 +138,6 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs);
-  font-family: var(--font-default);
-  font-size: var(--font-size-base);
-  color: var(--color-text);
   cursor: pointer;
 
   input[type="radio"],
@@ -166,11 +150,8 @@
 .filter-select {
   padding: var(--space-xs) var(--space-sm);
   background: var(--color-text-light);
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--border-light);
   border-radius: var(--radius-sm);
-  font-family: var(--font-default);
-  font-size: var(--font-size-base);
-  color: var(--color-text);
   cursor: pointer;
   min-width: 150px;
 
@@ -190,9 +171,6 @@
 }
 
 .results-count {
-  font-family: var(--font-default);
-  font-size: var(--font-size-base);
-  color: var(--color-text);
   text-align: center;
   flex: 1;
 }
@@ -200,11 +178,8 @@
 .sort-dropdown {
   padding: var(--space-xs) var(--space-sm);
   background: var(--color-text-light);
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--border-light);
   border-radius: var(--radius-sm);
-  font-family: var(--font-default);
-  font-size: var(--font-size-base);
-  color: var(--color-text);
   cursor: pointer;
 
   &:focus {
@@ -213,7 +188,9 @@
   }
 }
 
-.no-results {
+.no-results,
+.loading-message,
+.error-message {
   text-align: center;
   padding: var(--space-xl);
   color: rgba(0, 0, 0, 0.5);
