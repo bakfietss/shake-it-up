@@ -23,10 +23,7 @@
 }
 
 .logout-modal-tekst {
-  font-family: var(--font-default);
-  font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
-  color: var(--color-text);
   margin: 0 0 var(--space-lg) 0;
 }
 
@@ -40,8 +37,6 @@
 .logout-btn-bevestig {
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-sm);
-  font-family: var(--font-default);
-  font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: var(--transition-fast);

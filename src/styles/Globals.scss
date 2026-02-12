@@ -24,6 +24,16 @@ body {
   line-height: 1.6;
 }
 
+a {
+  color: inherit;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
 h1, h2, h3 {
   font-family: var(--font-default);
   color: var(--color-text);

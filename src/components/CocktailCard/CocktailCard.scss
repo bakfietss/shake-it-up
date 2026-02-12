@@ -1,16 +1,16 @@
 .cocktail-card {
   display: block;
   text-decoration: none;
-  background: white;
+  background: var(--color-text-light);
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   cursor: pointer;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-lg);
   }
 
   .card-image-wrapper {
@@ -51,7 +51,7 @@
       }
 
       &:hover {
-        background: white;
+        background: var(--color-text-light);
         transform: scale(1.1);
       }
 
@@ -68,7 +68,6 @@
     h3 {
       font-family: var(--font-title);
       font-size: var(--font-size-h3-min);
-      color: var(--color-text);
       min-height: 3.5em;
     }
 
@@ -82,7 +81,7 @@
     .tag {
       font-size: 11px;
       padding: 4px 8px;
-      border-radius: 12px;
+      border-radius: var(--radius-md);
       white-space: nowrap;
     }
 

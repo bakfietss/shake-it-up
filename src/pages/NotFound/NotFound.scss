@@ -24,16 +24,13 @@
   h2 {
     font-family: var(--font-title);
     font-size: var(--font-size-h1);
-    color: var(--color-text);
     margin-bottom: var(--space-md);
   }
 
   > p {
-    font-family: var(--font-default);
     font-size: var(--font-size-body);
     color: var(--color-text-muted);
     margin-bottom: var(--space-xl);
-    line-height: 1.6;
   }
 }
 

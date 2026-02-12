@@ -253,7 +253,6 @@
     background: transparent;
     border: none;
     outline: none;
-    font-size: var(--font-size-base);
     color: var(--color-text-light);
     font-weight: var(--font-weight-semibold);
     border-bottom: 2px solid var(--color-text-light);
@@ -275,7 +274,6 @@
     top: 50%;
     left: 0;
     transform: translateY(-50%);
-    font-size: var(--font-size-base);
     color: var(--color-text-light);
     pointer-events: none;
     transition: var(--transition-slow);
@@ -343,7 +341,6 @@
   }
 
   p {
-    font-size: var(--font-size-base);
     color: var(--color-text-light);
     margin-top: var(--space-xs);
   }
