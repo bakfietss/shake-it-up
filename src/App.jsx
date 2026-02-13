@@ -12,6 +12,7 @@ import Contact from './pages/Contact/Contact'
 import Login from './pages/Login_Register/Login'
 import Details from './pages/DetailsCocktail/Details'
 import NotFound from './pages/NotFound/NotFound'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 function App() {
   const location = useLocation()
@@ -29,7 +30,7 @@ function App() {
         <Route path="/" element={<HeroPage />} />
         <Route path="/search" element={<Search />} />
         <Route path="/random" element={<Random />} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/favorites" element={<ProtectedRoute><Favorites /></ProtectedRoute>} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cocktail/:id" element={<Details />} />
         <Route path="*" element={<NotFound />} />

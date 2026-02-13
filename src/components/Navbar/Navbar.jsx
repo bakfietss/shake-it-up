@@ -17,6 +17,13 @@ const Navbar = ({ onLoginClick }) => {
   const { showToast } = useToast();
   const [logoutOpen, setLogoutOpen] = useState(false)
 
+  const handleFavoritesClick = (e) => {
+    if (!isAuth) {
+      e.preventDefault()
+      showToast("Je moet eerst inloggen om je favorieten te bekijken", "info")
+    }
+  }
+
   const confirmLogout = () => {
     setLogoutOpen(false)
     logout()
@@ -57,7 +64,7 @@ const Navbar = ({ onLoginClick }) => {
               <span className="navbar-label navbar-label-left">Contact</span>
               <img src={EmailIcon} alt="Contact" className="navbar-icon" />
             </Link>
-            <Link to="/favorites" className="navbar-icon-link">
+            <Link to="/favorites" className="navbar-icon-link" onClick={handleFavoritesClick}>
               <span className="navbar-label navbar-label-left">Favorites</span>
               <img src={HeartIcon} alt="Favorites" className="navbar-icon" />
             </Link>
