@@ -8,8 +8,8 @@ export function useFavorites() {
     return useContext(FavoritesContext)
 }
 
-const NOVI_API = 'https://novi-backend-api-wgsgz.ondigitalocean.app/api'
-const NOVI_PROJECT_ID = '667e832d-8201-4580-afa3-87aecee36a78'
+const NOVI_API = import.meta.env.VITE_NOVI_API_URL
+const NOVI_PROJECT_ID = import.meta.env.VITE_NOVI_PROJECT_ID
 
 export function FavoritesProvider({ children }) {
     const [favorites, setFavorites] = useState([])

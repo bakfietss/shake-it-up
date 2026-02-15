@@ -11,7 +11,7 @@ const wakeUpNoviBackend = () => {
   fetch('https://novi-backend-api-wgsgz.ondigitalocean.app/', {
     method: 'HEAD',
     headers: {
-      'novi-education-project-id': '667e832d-8201-4580-afa3-87aecee36a78'
+      'novi-education-project-id': import.meta.env.VITE_NOVI_PROJECT_ID
     }
   }).catch(() => {
     // Negeer errors - het gaat alleen om de server wakker maken
